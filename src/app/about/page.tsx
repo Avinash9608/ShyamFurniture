@@ -36,11 +36,8 @@ export default function AboutPage() {
             <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">
               SHYAM FURNITURE IS A PREMIUM FURNITURE RETAILER SPECIALIZING IN HANDCRAFTED, HIGH-QUALITY PRODUCTS.
             </h2>
-            <div className="text-center text-muted-foreground space-y-4">
-              <p>We serve customers in the Saharsa region with a wide range of stylish and durable furniture for homes and offices, combining traditional craftsmanship with contemporary design.</p>
-              <p>With a strong local presence built over decades, Shyam Furniture has evolved into a modern retail brand. Our digital platform allows customers to conveniently browse collections and place orders online via our website or mobile application.</p>
-              <p>We are committed to quality, timely delivery, and customer satisfaction — values that have earned the trust of thousands of families.</p>
-              <p>Shyam Furniture is managed by a team of experienced professionals, each contributing to our operational excellence and digital growth.</p>
+            <div className="text-center text-muted-foreground">
+              <p>Shyam Furniture serves customers in the Saharsa region with a wide range of stylish and durable furniture for homes and offices, blending traditional craftsmanship with contemporary design. With a strong local presence built over decades, we have evolved into a modern retail brand, offering a seamless online shopping experience through our website and mobile application. Committed to quality, timely delivery, and customer satisfaction, we have earned the trust of thousands of families. Our operations are managed by a team of experienced professionals, each playing a vital role in driving our growth and ensuring excellence at every step.</p>
             </div>
           </div>
         </section>
