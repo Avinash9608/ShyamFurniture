@@ -2,15 +2,21 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, User, Phone, Mail } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export default function Home() {
   const popularProducts = products.slice(0, 6);
+  const teamMembers = [
+    { name: "John Doe", role: "Founder & CEO", image: "https://placehold.co/400x400.png", hint: "man portrait" },
+    { name: "Jane Smith", role: "Lead Designer", image: "https://placehold.co/400x400.png", hint: "woman portrait" },
+    { name: "Sam Wilson", role: "Operations Head", image: "https://placehold.co/400x400.png", hint: "person smiling" }
+  ];
 
   return (
     <div className="flex flex-col">
@@ -96,26 +102,35 @@ export default function Home() {
         <section id="about-shyam-furniture">
             <Card className="bg-card/80">
                 <CardHeader>
-                    <CardTitle className="text-3xl font-bold text-center">About Shyam Furniture</CardTitle>
+                    <CardTitle className="text-3xl font-bold text-center">🪑 About Shyam Furniture</CardTitle>
                 </CardHeader>
                 <CardContent className="prose max-w-none text-center mx-auto">
-                    <p>
-                        Shyam Furniture is a family-owned business with a rich legacy. It was founded by my grandfather, and over the years, both my father and grandfather worked together to build a strong reputation in the market by delivering high-quality furniture and exceptional customer service.
-                    </p>
-                    <p>
-                        Now, as we move into the digital age, we are proud to bring Shyam Furniture online to better serve our customers. You can now explore our wide range of furniture through our website or mobile application. Simply select the products you like and place your order via WhatsApp or email.
-                    </p>
-                    <p>
-                        Our team will get in touch with you within 24 hours to confirm the details and finalize your order.
-                    </p>
-                    <p className="font-semibold">
-                        📦 Currently, we offer delivery services within the <strong>Saharsa</strong> region only.
-                    </p>
-                    <p>
-                        We are committed to continuing the same trust, quality, and service — now with the convenience of online shopping.
-                    </p>
+                    <p>At Shyam Furniture, we believe your home deserves furniture that’s not just functional, but full of style, comfort, and character. We specialize in delivering premium-quality furniture with a strong commitment to service and satisfaction.</p>
+                    <p>To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.</p>
+                    <p className='font-semibold'>🛍️ See something you love?</p>
+                    <p>Just send us your selected items via WhatsApp or Email, and our dedicated team will personally reach out to you within 24 hours to confirm and finalize your order.</p>
+                    <p><strong>🚚 Currently, we deliver across the Saharsa region only.</strong></p>
+                    <p>From handpicking the best designs to ensuring smooth delivery, our team is here to bring your vision to life — with the same trust and quality that define Shyam Furniture.</p>
                 </CardContent>
             </Card>
+        </section>
+
+        <section id="team">
+          <h2 className="text-3xl font-bold text-center mb-8">Meet Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <Card key={index} className="text-center overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105">
+                <div className="relative h-56 bg-muted">
+                    <Image src={member.image} alt={member.name} data-ai-hint={member.hint} fill className="object-cover" />
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold font-headline">{member.name}</h3>
+                  <p className="text-primary">{member.role}</p>
+                  <p className="text-sm text-muted-foreground mt-2">Dedicated to bringing you the best furniture and service.</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
         
         <section id="closing" className="relative rounded-lg h-[50vh] bg-cover bg-center bg-no-repeat flex items-end justify-end p-8" style={{backgroundImage: "url('https://placehold.co/1200x400.png')"}}>
