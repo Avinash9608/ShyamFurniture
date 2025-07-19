@@ -69,7 +69,7 @@
 }
 
 .team {
-  @apply w-full flex flex-col justify-center items-center bg-gray-50;
+  @apply w-full flex flex-col justify-center items-center bg-secondary/30 py-16 md:py-24;
 }
 
 .section-heading {
@@ -82,6 +82,7 @@
 
 .team .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   width: 90%;
   max-width: 1440px;
@@ -102,7 +103,7 @@
   height: 180px;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid #f7f7f7;
+  border: 5px solid hsl(var(--background));
   filter: drop-shadow(-20px 0 10px rgba(0, 0, 0, 0.1));
   cursor: pointer;
 }
@@ -339,6 +340,26 @@
   }
   .timeline-item:nth-child(odd)::after, .timeline-item:nth-child(even)::after {
     left: 3px;
+  }
+
+  .team .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .profile:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .profile .profile-img {
+    filter: none;
+  }
+
+  .profile:hover .name-container {
+    opacity: 1;
+    bottom: -20px;
+    pointer-events: all;
   }
 }
 
@@ -616,8 +637,11 @@
 
 /* Offer Section */
 .offer-section {
-    @apply text-center py-16 px-4 rounded-lg text-white relative overflow-hidden;
+    @apply text-center py-12 px-4 rounded-lg text-white relative overflow-hidden;
     background: linear-gradient(45deg, #1a237e, #3949ab, #5c6bc0);
+}
+.dark .offer-section {
+  background: linear-gradient(45deg, #0f172a, #1e293b, #334155);
 }
 .offer-section .offer-content {
     @apply relative z-10;
@@ -625,9 +649,16 @@
 
 /* Gallery Section */
 .masonry-grid {
-    @apply grid gap-4;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    @apply grid gap-2 sm:gap-4;
+    grid-template-columns: repeat(2, 1fr);
 }
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
 
 .masonry-item {
     @apply relative overflow-hidden rounded-lg shadow-md;
@@ -635,5 +666,5 @@
 }
 
 .masonry-item img {
-    @apply transition-transform duration-300 ease-in-out group-hover:scale-105;
+    @apply transition-transform duration-300 ease-in-out group-hover:scale-105 w-full h-auto;
 }

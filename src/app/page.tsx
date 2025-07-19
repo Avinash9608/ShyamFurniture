@@ -160,11 +160,11 @@ const CountdownTimer = () => {
             return timeLeft;
         };
 
-        const timer = setTimeout(() => {
+        const timer = setInterval(() => {
             setTimeLeft(calculateTimeLeft() as any);
         }, 1000);
 
-        return () => clearTimeout(timer);
+        return () => clearInterval(timer);
     });
 
     const timerComponents: JSX.Element[] = [];
@@ -177,11 +177,11 @@ const CountdownTimer = () => {
 
         timerComponents.push(
             <div key={interval} className="flex flex-col items-center">
-                <span className="text-4xl font-bold">
+                <span className="text-2xl md:text-4xl font-bold">
                     {/* @ts-ignore */}
                     {String(timeLeft[interval]).padStart(2, '0')}
                 </span>
-                <span className="text-sm uppercase">{interval}</span>
+                <span className="text-xs md:text-sm uppercase">{interval}</span>
             </div>
         );
     });
@@ -213,7 +213,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-       <section className="relative h-[70vh] w-full overflow-hidden">
+       <section className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -222,18 +222,18 @@ export default function Home() {
             <Image
               src={slide.image}
               alt="Background furniture"
-              layout="fill"
+              fill
               objectFit="cover"
               className={`w-full h-full ${index === currentSlide ? 'animate-scroll-left-to-right' : ''}`}
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className={`absolute inset-0 flex flex-col items-start justify-center text-white p-4 md:p-8 lg:p-12 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-              <div className="bg-black/20 backdrop-blur-sm p-6 rounded-lg">
-                <h1 className="text-3xl md:text-5xl font-headline font-bold mb-2">
+              <div className="bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-lg">
+                <h1 className="text-2xl md:text-5xl font-headline font-bold mb-2">
                   {slide.tagline1}
                 </h1>
-                <p className="text-md md:text-xl font-body">
+                <p className="text-base md:text-xl font-body">
                   {slide.tagline2}
                 </p>
               </div>
@@ -243,21 +243,21 @@ export default function Home() {
         
         <div className="absolute bottom-0 left-0">
              <div className="animated-button-wrapper">
-                <Link href="/products" className="animated-button">
+                <Link href="/products" className="animated-button text-sm md:text-lg">
                     Explore our products <ArrowRight className="ml-2 h-5 w-5"/>
                 </Link>
             </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-20 md:space-y-24">
 
-        <section id="about-us-call" className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="md:order-2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+        <section id="about-us-call" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="md:order-2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/eff87568-186c-4ef5-9096-31ab18cd1768.png" data-ai-hint="furniture store interior" alt="Stylish furniture in a modern living room" width={600} height={400} className="w-full h-full object-cover" />
             </div>
-            <div className="space-y-6 md:order-1 text-left">
-                <h2 className="text-3xl font-bold flex items-center gap-3">
+            <div className="space-y-6 md:order-1 text-center md:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center md:justify-start gap-3">
                   <span className="text-4xl">🪑</span>
                   About Shyam Furniture
                 </h2>
@@ -276,30 +276,30 @@ export default function Home() {
         </section>
 
         <section id="claims" className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="flex flex-col items-center">
-              <Truck className="h-12 w-12 text-primary mb-2"/>
-              <h3 className="text-xl font-bold">Local Delivery</h3>
-              <p className="text-muted-foreground">Currently serving the Saharsa region</p>
+            <div className="flex flex-col items-center p-4">
+              <Truck className="h-10 w-10 md:h-12 md:w-12 text-primary mb-2"/>
+              <h3 className="text-lg md:text-xl font-bold">Local Delivery</h3>
+              <p className="text-muted-foreground text-sm md:text-base">Currently serving the Saharsa region</p>
             </div>
-            <div className="flex flex-col items-center">
-              <ShieldCheck className="h-12 w-12 text-primary mb-2"/>
-              <h3 className="text-xl font-bold">Quality Assured</h3>
-              <p className="text-muted-foreground">Legacy of trust and excellence</p>
+            <div className="flex flex-col items-center p-4">
+              <ShieldCheck className="h-10 w-10 md:h-12 md:w-12 text-primary mb-2"/>
+              <h3 className="text-lg md:text-xl font-bold">Quality Assured</h3>
+              <p className="text-muted-foreground text-sm md:text-base">Legacy of trust and excellence</p>
             </div>
-            <div className="flex flex-col items-center">
-              <Tag className="h-12 w-12 text-primary mb-2"/>
-              <h3 className="text-xl font-bold">Personalized Service</h3>
-              <p className="text-muted-foreground">Direct contact to finalize your order</p>
+            <div className="flex flex-col items-center p-4">
+              <Tag className="h-10 w-10 md:h-12 md:w-12 text-primary mb-2"/>
+              <h3 className="text-lg md:text-xl font-bold">Personalized Service</h3>
+              <p className="text-muted-foreground text-sm md:text-base">Direct contact to finalize your order</p>
             </div>
         </section>
 
         <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
-           <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+           <div className="md:w-1/2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
             </div>
           <div className="md:w-1/2 space-y-4 text-center md:text-left">
-            <h2 className="text-3xl font-bold">Built to Last and Modern</h2>
-            <p>Our collections are a testament to modern design principles, focusing on clean lines, functionality, and sustainable materials that stand the test of time.</p>
+            <h2 className="text-3xl md:text-4xl font-bold">Built to Last and Modern</h2>
+            <p className="text-muted-foreground">Our collections are a testament to modern design principles, focusing on clean lines, functionality, and sustainable materials that stand the test of time.</p>
             <Button asChild variant="outline">
               <Link href="/products">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
@@ -307,13 +307,13 @@ export default function Home() {
         </section>
 
         <section id="sales" className="text-center">
-          <h2 className="text-3xl font-bold mb-8">Popular Items On Sale</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Popular Items On Sale</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {popularProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-12 flex justify-center">
               <div className="voltage-button">
                 <Link href="/products">
                   <button>Explore More</button>
@@ -347,10 +347,10 @@ export default function Home() {
 
         <section id="limited-offer" className="offer-section">
             <div className="offer-content">
-                <h2 className="text-4xl font-headline font-bold mb-2">Limited Time Offer!</h2>
-                <p className="text-xl mb-6">Flat <span className="text-yellow-400 font-bold">10% Off</span> on All Sofa Sets</p>
+                <h2 className="text-3xl md:text-4xl font-headline font-bold mb-2">Limited Time Offer!</h2>
+                <p className="text-lg md:text-xl mb-6">Flat <span className="text-yellow-400 font-bold">10% Off</span> on All Sofa Sets</p>
                 <CountdownTimer />
-                <Button size="lg" className="mt-8">
+                <Button size="lg" className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground">
                     <Link href="https://wa.me/911234567890?text=I'm_interested_in_the_10%_off_sofa_deal!">
                         Claim Offer on WhatsApp
                     </Link>
@@ -359,7 +359,7 @@ export default function Home() {
         </section>
 
         <section id="gallery" className="text-center">
-            <h2 className="text-3xl font-bold mb-2">Our Furniture in Your Homes</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Our Furniture in Your Homes</h2>
             <p className="text-muted-foreground mb-8">Tag us on Instagram <a href="#" className="text-primary hover:underline">@ShyamFurniture</a></p>
             <div className="masonry-grid">
                 {galleryImages.map((image, index) => (
@@ -375,7 +375,7 @@ export default function Home() {
 
         <section id="testimonials" className="w-full">
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold">🗣️ Customer Testimonials</h2>
+                <h2 className="text-3xl md:text-4xl font-bold">🗣️ Customer Testimonials</h2>
                 <p className="text-muted-foreground mt-2">What our customers say about Shyam Furniture</p>
             </div>
             <Carousel
@@ -385,7 +385,7 @@ export default function Home() {
             >
                 <CarouselContent className="-ml-4">
                     {testimonials.map((testimonial, index) => (
-                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                        <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3 pl-4">
                             <Card className="h-full flex flex-col">
                                 <CardContent className="p-6 flex-1 flex flex-col items-center text-center">
                                     <Avatar className="w-20 h-20 mb-4 border-4 border-primary/20">
@@ -404,13 +404,13 @@ export default function Home() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex"/>
+                <CarouselPrevious className="hidden sm:flex" />
+                <CarouselNext className="hidden sm:flex"/>
             </Carousel>
         </section>
 
         <section id="faq" className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">🛋️ Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">🛋️ Frequently Asked Questions</h2>
           <Accordion 
             type="single" 
             collapsible 
@@ -422,10 +422,8 @@ export default function Home() {
                 <AccordionItem 
                     key={item.value} 
                     value={item.value} 
-                    onMouseEnter={() => setActiveAccordionItem(item.value)}
-                    onMouseLeave={() => setActiveAccordionItem(null)}
                 >
-                    <AccordionTrigger>{item.question}</AccordionTrigger>
+                    <AccordionTrigger className="text-left">{item.question}</AccordionTrigger>
                     <AccordionContent>
                         <p dangerouslySetInnerHTML={{ __html: item.answer }} />
                     </AccordionContent>
@@ -435,7 +433,7 @@ export default function Home() {
         </section>
 
         <section id="location" className="w-full">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Location</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Our Location</h2>
           <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57333.72979689434!2d86.5642918408425!3d25.88839016997184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ee758ef53c1339%3A0x8f4fed3fd986f73!2sSaharsa%2C%20Bihar%2C%20India!5e0!3m2!1sen!2sus!4v1722442225330!5m2!1sen!2sus"
@@ -477,7 +475,3 @@ export default function Home() {
   );
 
 }
-
-    
-
-    

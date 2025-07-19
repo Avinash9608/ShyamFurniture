@@ -6,8 +6,8 @@ const Footer = () => {
   return (
     <footer className="bg-secondary/50 mt-auto">
       <div className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <div className="space-y-4 col-span-1 md:col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 text-center md:text-left">
+          <div className="space-y-4 col-span-1 md:col-span-2 lg:col-span-1 flex flex-col items-center md:items-start">
              <Link href="/" className="flex items-center gap-2">
                 <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/logo.png" alt="Shyam Furniture Logo" width={32} height={32} />
                 <h1 className="text-2xl font-headline font-bold">Shyam Furniture</h1>
@@ -37,7 +37,7 @@ const Footer = () => {
           </div>
           <div className="space-y-4">
             <h3 className="font-headline font-semibold">Company</h3>
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center md:justify-start">
                 <Link href="#" aria-label="Twitter">
                     <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
                 </Link>
@@ -50,7 +50,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="border-t pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
+        <div className="border-t pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-4">
           <p>&copy; {new Date().getFullYear()} Shyam Furniture. All rights reserved.</p>
           <Link href="#" className="hover:text-primary transition-colors">Terms & Privacy Policy</Link>
         </div>
