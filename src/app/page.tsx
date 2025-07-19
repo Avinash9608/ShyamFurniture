@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
-import { ArrowRight, User, Phone, Mail } from 'lucide-react';
+import { ArrowRight, User, Phone, Mail, Truck, ShieldCheck, Tag } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -35,32 +35,35 @@ export default function Home() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
 
         <section id="about-us-call">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2 space-y-4 text-center md:text-left">
-              <h2 className="text-3xl font-bold">High-quality and Timeless pieces</h2>
-              <p>Discover furniture that combines exceptional craftsmanship with enduring style. Each piece is designed to be a part of your home for years to come.</p>
-              <Button asChild>
-                <Link href="/about">About Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold">🪑 About Shyam Furniture</h2>
+              <p className="mt-4 text-muted-foreground">
+                  At Shyam Furniture, we believe your home deserves furniture that’s not just functional, but full of style, comfort, and character. We specialize in delivering premium-quality furniture with a strong commitment to service and satisfaction.
+              </p>
+              <p className="mt-4 text-muted-foreground">
+                  To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.
+              </p>
+               <Button asChild className="mt-6">
+                <Link href="/about">Meet Our Team <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-            </div>
-            <div className="md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden shadow-lg group">
-                <Image src="https://placehold.co/600x400.png" data-ai-hint="elegant interior design" alt="High-quality furniture" width={600} height={400} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            </div>
           </div>
         </section>
 
         <section id="claims" className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <p className="text-4xl font-bold">37</p>
-              <p className="text-muted-foreground">Countries with stores</p>
+            <div className="flex flex-col items-center">
+              <Truck className="h-12 w-12 text-primary mb-2"/>
+              <h3 className="text-xl font-bold">Local Delivery</h3>
+              <p className="text-muted-foreground">Currently serving the Saharsa region</p>
             </div>
-            <div>
-              <p className="text-4xl font-bold">10k+</p>
-              <p className="text-muted-foreground">Happy customers</p>
+            <div className="flex flex-col items-center">
+              <ShieldCheck className="h-12 w-12 text-primary mb-2"/>
+              <h3 className="text-xl font-bold">Quality Assured</h3>
+              <p className="text-muted-foreground">Legacy of trust and excellence</p>
             </div>
-            <div>
-              <p className="text-4xl font-bold">Worldwide</p>
-              <p className="text-muted-foreground">Shipping</p>
+            <div className="flex flex-col items-center">
+              <Tag className="h-12 w-12 text-primary mb-2"/>
+              <h3 className="text-xl font-bold">Personalized Service</h3>
+              <p className="text-muted-foreground">Direct contact to finalize your order</p>
             </div>
         </section>
 
@@ -100,9 +103,17 @@ export default function Home() {
               <AccordionTrigger>How do I track my order?</AccordionTrigger>
               <AccordionContent>You can track your order by logging into your account and viewing the order details. A tracking number will be provided once the order has been shipped.</AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Do you offer international shipping?</AccordionTrigger>
-              <AccordionContent>Yes, we offer international shipping to many countries. Please check our shipping information page for details on available destinations and shipping rates.</AccordionContent>
+             <AccordionItem value="item-how-to-order">
+                <AccordionTrigger>How do I place an order?</AccordionTrigger>
+                <AccordionContent>
+                    See something you love? Just send us your selected items via WhatsApp or Email, and our dedicated team will personally reach out to you within 24 hours to confirm and finalize your order.
+                </AccordionContent>
+            </AccordionItem>
+             <AccordionItem value="item-delivery">
+                <AccordionTrigger>Where do you deliver?</AccordionTrigger>
+                <AccordionContent>
+                   Currently, we offer delivery services within the Saharsa region only.
+                </AccordionContent>
             </AccordionItem>
              <AccordionItem value="item-4">
               <AccordionTrigger>How can I contact customer support?</AccordionTrigger>
