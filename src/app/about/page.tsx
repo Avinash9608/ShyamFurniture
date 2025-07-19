@@ -1,12 +1,9 @@
 import Image from 'next/image';
 
 const teamMembers = [
-    { name: "John Doe", role: "Founder & CEO", image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-    { name: "Jane Smith", role: "Lead Designer", image: "https://images.pexels.com/photos/2811089/pexels-photo-2811089.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-    { name: "Sam Wilson", role: "Operations Head", image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-    { name: "Matthew Foster", role: "Chief Sales Officer", image: "https://images.pexels.com/photos/2216607/pexels-photo-2216607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-    { name: "Artur Dichter", role: "Chief Financial Officer", image: "https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-    { name: "Oliver Rohlsson", role: "Chief Technical Officer", image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" }
+    { name: "Mr. Gupta", role: "Head of Operations", image: "https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { name: "Mr. Sahil Gupta", role: "CEO & Managing Director", image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+    { name: "Mr. Gupta", role: "Head of Technical & Logistics", image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
 ];
 
 
@@ -24,22 +21,30 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-6xl mx-auto px-4 -mt-12 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="p-8 rounded-lg bg-card border border-border/50 text-center flex flex-col items-center shadow-lg transition-transform hover:scale-105">
-               <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-background">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  layout="fill"
-                  className="object-cover"
-                />
-              </div>
-              <h2 className="text-xl font-bold font-headline mt-4">{member.name}</h2>
-              <p className="text-primary">{member.role}</p>
-            </div>
-          ))}
+      <main className="relative z-10 max-w-4xl mx-auto px-4 -mt-12 pb-16">
+        <div className="bg-card border border-border/50 rounded-lg p-8 shadow-lg text-card-foreground">
+          <h2 className="text-3xl font-bold font-headline mb-6 text-center">Management Team – Shyam Furniture</h2>
+          <p className="mb-8 text-center text-muted-foreground">
+            At Shyam Furniture, our operations are driven by a dedicated and experienced team, each playing a vital role in ensuring smooth day-to-day functioning and long-term growth:
+          </p>
+          <ul className="space-y-6 text-lg">
+            <li>
+              <h3 className="text-xl font-semibold text-primary">Founder & Visionary</h3>
+              <p className="text-muted-foreground">The foundation of Shyam Furniture was laid by the late Grandfather of Mr. Sahil Gupta, with a commitment to quality and trust.</p>
+            </li>
+            <li>
+              <h3 className="text-xl font-semibold text-primary">Head of Operations</h3>
+              <p className="text-muted-foreground">Mr. Gupta (Father of Sahil Gupta) – With years of experience in furniture and retail, he leads the on-ground operations and maintains strong customer relationships.</p>
+            </li>
+            <li>
+              <h3 className="text-xl font-semibold text-primary">CEO & Managing Director</h3>
+              <p className="text-muted-foreground">Mr. Sahil Gupta – Oversees the overall business strategy, digital expansion, and customer experience. He is responsible for taking the brand to new heights in the modern market.</p>
+            </li>
+            <li>
+              <h3 className="text-xl font-semibold text-primary">Head of Technical & Logistics</h3>
+              <p className="text-muted-foreground">Mr. Gupta (Elder Brother of Sahil) – Manages technical infrastructure, online order systems, inventory coordination, and delivery logistics to ensure efficient service.</p>
+            </li>
+          </ul>
         </div>
       </main>
     </div>
