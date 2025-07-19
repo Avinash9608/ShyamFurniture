@@ -1,3 +1,7 @@
+
+"use client";
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
@@ -9,25 +13,73 @@ import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
+const heroSlides = [
+  {
+    image: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+    tagline1: "Apka Ghar, Apka Style",
+    tagline2: "Design Banaye Apke Sapno Ka Ghar"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1550226891-ef816aed4a98?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+    tagline1: "Comfort Jo Mehsoos Ho",
+    tagline2: "Quality Jo Bharosa De"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+    tagline1: "Sundarta Bhi, Mazbooti Bhi",
+    tagline2: "Furniture Banaye Apke Ghar Ko Khaas"
+  },
+  {
+    image: "https://images.unsplash.com/photo-1488901512066-cd403111aeb2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+    tagline1: "Ghar Ki Pehchaan",
+    tagline2: "Shyam Furniture Ke Saath"
+  }
+];
+
+
 export default function Home() {
   const popularProducts = products.slice(0, 6);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % heroSlides.length);
+    }, 5000); // Change slide every 5 seconds
+    return () => clearInterval(timer);
+  }, []);
+
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[70vh] flex items-start justify-start text-foreground bg-cover bg-center" style={{backgroundImage: "url('https://placehold.co/1920x1080.png')"}} data-ai-hint="modern stylish living room">
-        <div className="absolute inset-0 bg-background/30" />
-        <div className="relative z-10 p-5 md:p-10 bg-background/80 rounded-br-2xl">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
-            Design your Comfort
-          </h1>
-          <p className="text-lg md:text-xl">
-            Your Home, Your Style
-          </p>
-        </div>
+       <section className="relative h-[70vh] w-full overflow-hidden">
+        {heroSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <Image
+              src={slide.image}
+              alt="Background furniture"
+              layout="fill"
+              objectFit="cover"
+              className={`w-full h-full transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`}
+              priority={index === 0}
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <div className={`absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+              <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
+                {slide.tagline1}
+              </h1>
+              <p className="text-lg md:text-2xl font-body">
+                {slide.tagline2}
+              </p>
+            </div>
+          </div>
+        ))}
         
-        <div className="absolute bottom-0 left-0 z-10 p-3 bg-background/80 rounded-tr-2xl">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
            <Link href="/products">
-            <Button variant="link" className="text-base">Explore our products</Button>
+            <Button variant="secondary" size="lg">Explore our products <ArrowRight className="ml-2 h-5 w-5"/></Button>
           </Link>
         </div>
       </section>
