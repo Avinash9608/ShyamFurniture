@@ -36,10 +36,64 @@ const heroSlides = [
   }
 ];
 
+const faqItems = [
+    {
+      value: "item-1",
+      question: "Where is Shyam Furniture located?",
+      answer: "Shyam Furniture is based in <strong>Saharsa, Bihar</strong>. We currently provide services and delivery within the Saharsa region."
+    },
+    {
+      value: "item-2",
+      question: "How can I place an order?",
+      answer: "You can place an order by browsing our website or mobile app, selecting your desired furniture, and contacting us via <strong>WhatsApp</strong> or <strong>email</strong>. Our team will confirm your order within 24 hours."
+    },
+    {
+      value: "item-3",
+      question: "Do you offer home delivery?",
+      answer: "Yes, we offer <strong>home delivery within Saharsa</strong>. Once your order is confirmed, our team will schedule and deliver your furniture to your doorstep."
+    },
+    {
+      value: "item-4",
+      question: "What types of furniture do you offer?",
+      answer: "We offer a wide range of furniture for <strong>homes and offices</strong>, including beds, sofas, dining tables, wardrobes, office chairs, study tables, and more — combining <strong>traditional craftsmanship with modern design</strong>."
+    },
+    {
+      value: "item-5",
+      question: "Can I customize furniture according to my needs?",
+      answer: "Yes, we do take <strong>custom orders</strong>. If you have specific design or size requirements, please get in touch with our team to discuss the options and pricing."
+    },
+    {
+      value: "item-6",
+      question: "How long does it take to deliver an order?",
+      answer: "Delivery typically takes <strong>3–7 working days</strong> after order confirmation, depending on product availability and customization."
+    },
+    {
+      value: "item-7",
+      question: "What payment methods are available?",
+      answer: "We accept payments via <strong>UPI, bank transfer, and cash on delivery (within Saharsa)</strong>. Payment details will be shared once your order is confirmed."
+    },
+    {
+      value: "item-8",
+      question: "Do you have a physical store I can visit?",
+      answer: "Yes, we have a <strong>physical showroom in Saharsa</strong> where you can explore our furniture collection in person. Contact us for address and timings."
+    },
+    {
+      value: "item-9",
+      question: "Is there a return or exchange policy?",
+      answer: "We currently offer <strong>returns or exchanges only for damaged or defective items</strong>, reported within 24 hours of delivery. Please contact our team for support."
+    },
+    {
+      value: "item-10",
+      question: "Do you plan to expand delivery beyond Saharsa?",
+      answer: "Yes! We are working on expanding our delivery network to <strong>nearby cities in the upcoming year</strong>. Stay tuned for updates!"
+    }
+  ];
+
 
 export default function Home() {
   const popularProducts = products.slice(0, 6);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeAccordionItem, setActiveAccordionItem] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -158,51 +212,26 @@ export default function Home() {
 
         <section id="faq" className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">🛋️ Frequently Asked Questions</h2>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Where is Shyam Furniture located?</AccordionTrigger>
-              <AccordionContent>Shyam Furniture is based in <strong>Saharsa, Bihar</strong>. We currently provide services and delivery within the Saharsa region.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>How can I place an order?</AccordionTrigger>
-              <AccordionContent>You can place an order by browsing our website or mobile app, selecting your desired furniture, and contacting us via <strong>WhatsApp</strong> or <strong>email</strong>. Our team will confirm your order within 24 hours.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-                <AccordionTrigger>Do you offer home delivery?</AccordionTrigger>
-                <AccordionContent>
-                    Yes, we offer <strong>home delivery within Saharsa</strong>. Once your order is confirmed, our team will schedule and deliver your furniture to your doorstep.
-                </AccordionContent>
-            </AccordionItem>
-             <AccordionItem value="item-4">
-                <AccordionTrigger>What types of furniture do you offer?</AccordionTrigger>
-                <AccordionContent>
-                   We offer a wide range of furniture for <strong>homes and offices</strong>, including beds, sofas, dining tables, wardrobes, office chairs, study tables, and more — combining <strong>traditional craftsmanship with modern design</strong>.
-                </AccordionContent>
-            </AccordionItem>
-             <AccordionItem value="item-5">
-              <AccordionTrigger>Can I customize furniture according to my needs?</AccordionTrigger>
-              <AccordionContent>Yes, we do take <strong>custom orders</strong>. If you have specific design or size requirements, please get in touch with our team to discuss the options and pricing.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-6">
-              <AccordionTrigger>How long does it take to deliver an order?</AccordionTrigger>
-              <AccordionContent>Delivery typically takes <strong>3–7 working days</strong> after order confirmation, depending on product availability and customization.</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-7">
-              <AccordionTrigger>What payment methods are available?</AccordionTrigger>
-              <AccordionContent>We accept payments via <strong>UPI, bank transfer, and cash on delivery (within Saharsa)</strong>. Payment details will be shared once your order is confirmed.</AccordionContent>
-            </AccordionItem>
-             <AccordionItem value="item-8">
-              <AccordionTrigger>Do you have a physical store I can visit?</AccordionTrigger>
-              <AccordionContent>Yes, we have a <strong>physical showroom in Saharsa</strong> where you can explore our furniture collection in person. Contact us for address and timings.</AccordionContent>
-            </AccordionItem>
-             <AccordionItem value="item-9">
-              <AccordionTrigger>Is there a return or exchange policy?</AccordionTrigger>
-              <AccordionContent>We currently offer <strong>returns or exchanges only for damaged or defective items</strong>, reported within 24 hours of delivery. Please contact our team for support.</AccordionContent>
-            </AccordionItem>
-             <AccordionItem value="item-10">
-              <AccordionTrigger>Do you plan to expand delivery beyond Saharsa?</AccordionTrigger>
-              <AccordionContent>Yes! We are working on expanding our delivery network to <strong>nearby cities in the upcoming year</strong>. Stay tuned for updates!</AccordionContent>
-            </AccordionItem>
+          <Accordion 
+            type="single" 
+            collapsible 
+            className="w-full"
+            value={activeAccordionItem ?? ""}
+            onValueChange={setActiveAccordionItem}
+          >
+            {faqItems.map(item => (
+                <AccordionItem 
+                    key={item.value} 
+                    value={item.value} 
+                    onMouseEnter={() => setActiveAccordionItem(item.value)}
+                    onMouseLeave={() => setActiveAccordionItem(null)}
+                >
+                    <AccordionTrigger>{item.question}</AccordionTrigger>
+                    <AccordionContent>
+                        <p dangerouslySetInnerHTML={{ __html: item.answer }} />
+                    </AccordionContent>
+                </AccordionItem>
+            ))}
           </Accordion>
         </section>
 
