@@ -46,28 +46,25 @@ export default function AboutPage() {
             </li>
           </ul>
         </div>
+      </main>
 
-        <section className="mt-16 text-center">
-            <h2 className="text-3xl font-bold font-headline mb-8">Our Team</h2>
-             <div className="flex justify-center flex-wrap gap-8">
-                {teamMembers.map((member, index) => (
-                    <div key={index} className="flex flex-col items-center text-center max-w-xs">
-                        <div className="relative w-40 h-40 mb-4">
-                            <Image
-                                src={member.image}
-                                alt={`Photo of ${member.name}`}
-                                fill
-                                className="rounded-full object-cover border-4 border-primary/20 shadow-lg"
-                            />
-                        </div>
-                        <h3 className="text-xl font-bold">{member.name}</h3>
-                        <p className="text-muted-foreground">{member.role}</p>
-                    </div>
-                ))}
-            </div>
+       <section className="team py-16">
+          <h2 className="section-heading">Our Team</h2>
+          <div className="container">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="profile">
+                <Image
+                  src={member.image}
+                  alt={`Photo of ${member.name}`}
+                  width={200}
+                  height={200}
+                />
+                <span className="name">{member.name}</span>
+              </div>
+            ))}
+          </div>
         </section>
 
-      </main>
     </div>
   );
 }
