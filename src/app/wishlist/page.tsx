@@ -53,7 +53,7 @@ export default function WishlistPage() {
                   <Link href={`/products/${item._id}`} className="hover:underline">
                     <h2 className="text-xl font-headline font-semibold">{item.name}</h2>
                   </Link>
-                  <p className="text-lg font-semibold">${item.price.toFixed(2)}</p>
+                  <p className="text-lg font-semibold">INR {item.price.toFixed(2)}</p>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">
                   <Button variant="outline" onClick={() => handleMoveToCart(item)}>

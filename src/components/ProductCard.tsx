@@ -31,7 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </CardContent>
         <CardFooter className="p-4 pt-0 flex justify-between items-center">
             <div className="text-lg font-semibold">
-                ${product.price.toFixed(2)}
+                INR {product.price.toFixed(2)}
             </div>
         </CardFooter>
        </Link>

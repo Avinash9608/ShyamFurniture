@@ -63,9 +63,9 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl font-headline font-bold">{product.name}</h1>
            <div className="flex items-center gap-4">
-              <p className="text-3xl font-headline font-semibold">${product.price.toFixed(2)}</p>
+              <p className="text-3xl font-headline font-semibold">INR {product.price.toFixed(2)}</p>
                {product.discountPrice && (
-                <p className="text-xl font-headline text-muted-foreground line-through">${product.discountPrice.toFixed(2)}</p>
+                <p className="text-xl font-headline text-muted-foreground line-through">INR {product.discountPrice.toFixed(2)}</p>
               )}
            </div>
            {product.rating > 0 && (

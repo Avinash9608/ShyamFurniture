@@ -59,7 +59,7 @@ export default async function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${stats.totalSales.toLocaleString()}
+              INR {stats.totalSales.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
               all-time revenue

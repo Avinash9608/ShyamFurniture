@@ -205,8 +205,8 @@ export default function Home() {
         const res = await fetch('/api/admin/products');
         if (res.ok) {
           const allProducts = await res.json();
-          // For now, let's take the first 6 as "popular"
-          setPopularProducts(allProducts.slice(0, 6));
+          // For now, let's take the first 3 as "popular"
+          setPopularProducts(allProducts.slice(0, 3));
         }
       } catch (error) {
         console.error("Failed to fetch products for homepage", error);

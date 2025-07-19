@@ -58,8 +58,8 @@ export function ProductGrid({ products, allMaterials, allColors }: ProductGridPr
                 onValueChange={(value) => setPriceRange(value)}
               />
               <div className="flex justify-between mt-2 text-sm">
-                <span>${priceRange[0]}</span>
-                <span>${priceRange[1]}</span>
+                <span>INR {priceRange[0]}</span>
+                <span>INR {priceRange[1]}</span>
               </div>
             </div>
 

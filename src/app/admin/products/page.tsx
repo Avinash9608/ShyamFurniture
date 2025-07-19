@@ -115,7 +115,7 @@ export default async function AdminProductsPage() {
                             {product.availability ? 'Active' : 'Draft'}
                         </Badge>
                         </TableCell>
-                        <TableCell className="hidden md:table-cell">${product.price.toFixed(2)}</TableCell>
+                        <TableCell className="hidden md:table-cell">INR {product.price.toFixed(2)}</TableCell>
                         <TableCell className="hidden md:table-cell">{product.category}</TableCell>
                         <TableCell className="hidden md:table-cell">
                         {new Date(product.createdAt).toLocaleDateString()}
