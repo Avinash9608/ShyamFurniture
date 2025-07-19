@@ -14,11 +14,11 @@ export default function AboutPage() {
   return (
     <div className="bg-background text-foreground min-h-screen">
       <header 
-        className="relative w-full min-h-[25em] flex flex-col justify-center items-center text-center text-white bg-cover bg-center"
+        className="relative w-full min-h-[25em] flex flex-col justify-center items-center text-center bg-cover bg-center"
         style={{backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop')"}}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        <div className="relative z-10 w-11/12 md:w-3/4 lg:w-1/2 mt-20">
+        <div className="relative z-10 w-11/12 md:w-3/4 lg:w-1/2 mt-20 text-foreground">
           <span className="inline-block uppercase tracking-wider text-sm font-semibold">Company Management</span>
           <h1 className="text-2xl md:text-4xl font-bold mt-2">Meet a team of experts and innovators who are pioneers in their field</h1>
         </div>
