@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const teamMembers = [
@@ -14,15 +17,45 @@ const historyData = [
   { year: "Early 2025", description: "Formation of in-house technical and logistics team in early 2025" },
   { year: "Mid-2025", description: "Dedicated delivery service established within Saharsa in mid-2025" },
   { year: "Upcoming Year", description: "Planned expansion of delivery to nearby cities in the upcoming year" },
-]
+];
+
+const backgroundImages = [
+  'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnVybml0dXJlfGVufDB8fDB8fHww',
+  'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnVybml0dXJlfGVufDB8fDB8fHww',
+  'https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D'
+];
 
 export default function AboutPage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="bg-background text-foreground min-h-screen about-page-new">
 
-      <section id="marketlead-info" className="py-16 md:py-24" style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1684338795288-097525d127f0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D')" }}>
-        <div className="max-w-6xl mx-auto px-4">
-            <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <section id="marketlead-info" className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          {backgroundImages.map((src, index) => (
+             <Image
+              key={src}
+              src={src}
+              alt="Background furniture"
+              layout="fill"
+              objectFit="cover"
+              className={`transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+              priority={index === 0}
+            />
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground font-headline uppercase tracking-wider">
                 A premium furniture retailer specializing in handcrafted, high-quality products.
                 </h2>
