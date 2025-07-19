@@ -30,7 +30,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Card className="overflow-hidden group transition-all duration-300 hover:shadow-xl">
+    <Card className="overflow-hidden group transition-all duration-300 hover:shadow-xl rounded-2xl">
       <Link href={`/products/${product.id}`}>
         <CardHeader className="p-0">
           <div className="relative h-64 w-full">
@@ -42,23 +42,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
             />
           </div>
         </CardHeader>
-        <CardContent className="p-4">
+        <CardContent className="p-4 text-left">
           <CardTitle className="text-lg font-headline font-semibold mb-2 truncate">{product.name}</CardTitle>
-          <p className="text-xl font-bold font-headline">${product.price.toFixed(2)}</p>
+          <p className="text-muted-foreground text-sm h-10 overflow-hidden">{product.description}</p>
         </CardContent>
       </Link>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <Button onClick={() => addToCart(product)} className="w-full mr-2">
-          <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
-        </Button>
-        <Button 
-          variant="outline" 
-          size="icon" 
-          onClick={handleWishlistToggle}
-          className={cn(isWishlisted && 'text-red-500 border-red-500 hover:text-red-500')}
-          aria-label="Add to wishlist"
-        >
-          <Heart className={cn('h-5 w-5', isWishlisted && 'fill-current')} />
+      <CardFooter className="p-4 pt-0">
+        <Button asChild variant="link" className="p-0 h-auto">
+          <Link href={`/products/${product.id}`}>View details</Link>
         </Button>
       </CardFooter>
     </Card>

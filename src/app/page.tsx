@@ -2,41 +2,152 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
+import { ArrowRight, Star } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import Image from 'next/image';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 3);
+  const popularProducts = products.slice(0, 6);
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] flex items-center justify-center text-center text-white bg-cover bg-center" style={{backgroundImage: "url('https://placehold.co/1920x1080.png')"}} data-ai-hint="modern living room">
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 p-4 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tight mb-4">
-            Design Your Dream Space
+      <section className="relative h-[70vh] flex items-start justify-start text-foreground bg-cover bg-center" style={{backgroundImage: "url('https://placehold.co/1920x1080.png')"}} data-ai-hint="modern stylish living room">
+        <div className="absolute inset-0 bg-background/10" />
+        <div className="relative z-10 p-5 md:p-10 bg-background rounded-br-2xl">
+          <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
+            Design your Comfort
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
-            Discover exquisite furniture and bring your vision to life with our AI-powered virtual try-on.
+          <p className="text-lg md:text-xl">
+            Your Home, Your Style
           </p>
-          <Link href="/products">
-            <Button size="lg" className="gradient-cta hover:opacity-90 transition-opacity">
-              Explore Collection
-            </Button>
+        </div>
+        <div className="absolute top-0 right-0 z-10 p-3 bg-background rounded-bl-2xl">
+          <Button variant="link" className="text-base">100-Day Refund</Button>
+        </div>
+        <div className="absolute bottom-0 left-0 z-10 p-3 bg-background rounded-tr-2xl">
+           <Link href="/products">
+            <Button variant="link" className="text-base">Explore our products</Button>
           </Link>
         </div>
       </section>
 
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-headline font-bold text-center mb-10">
-            Featured Products
-          </h2>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <section id="about-us-call">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 space-y-4 text-center md:text-left">
+              <h2 className="text-3xl font-bold">High-quality and Timeless pieces</h2>
+              <p>Discover furniture that combines exceptional craftsmanship with enduring style. Each piece is designed to be a part of your home for years to come.</p>
+              <Button asChild>
+                <Link href="/about">About Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </div>
+            <div className="md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
+                <Image src="https://placehold.co/600x400.png" data-ai-hint="elegant interior design" alt="High-quality furniture" width={600} height={400} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+            </div>
+          </div>
+        </section>
+
+        <section id="claims" className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+              <p className="text-4xl font-bold">37</p>
+              <p className="text-muted-foreground">Countries with stores</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold">10k+</p>
+              <p className="text-muted-foreground">Happy customers</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold">Worldwide</p>
+              <p className="text-muted-foreground">Shipping</p>
+            </div>
+        </section>
+
+        <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
+           <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+              <Image src="https://placehold.co/600x400.png" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
+            </div>
+          <div className="md:w-1/2 space-y-4 text-center md:text-left">
+            <h2 className="text-3xl font-bold">Built to Last and Modern</h2>
+            <p>Our collections are a testament to modern design principles, focusing on clean lines, functionality, and sustainable materials that stand the test of time.</p>
+            <Button asChild variant="outline">
+              <Link href="/products">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            </Button>
+          </div>
+        </section>
+
+        <section id="sales" className="text-center">
+          <h2 className="text-3xl font-bold mb-8">Popular Items On Sale</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
+            {popularProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </div>
-      </section>
+          <Button asChild className="mt-8">
+            <Link href="/products">Explore More</Link>
+          </Button>
+        </section>
+
+        <section id="video-promo">
+            <div className="aspect-video rounded-lg overflow-hidden">
+             <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/tgbNymZ7vqY" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowFullScreen>
+              </iframe>
+            </div>
+        </section>
+        
+        <section id="faq" className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>What is your return policy?</AccordionTrigger>
+              <AccordionContent>Our return policy allows you to return items within 30 days of purchase. Items must be in original condition with all tags attached. Please see our full return policy for more details.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>How do I track my order?</AccordionTrigger>
+              <AccordionContent>You can track your order by logging into your account and viewing the order details. A tracking number will be provided once the order has been shipped.</AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Do you offer international shipping?</AccordionTrigger>
+              <AccordionContent>Yes, we offer international shipping to many countries. Please check our shipping information page for details on available destinations and shipping rates.</AccordionContent>
+            </AccordionItem>
+             <AccordionItem value="item-4">
+              <AccordionTrigger>How can I contact customer support?</AccordionTrigger>
+              <AccordionContent>You can contact our customer support team via email at support@flock.com or call us at (123) 456-7890. Our support hours are Monday to Friday, 9 AM to 5 PM.</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </section>
+
+        <section id="contact" className="max-w-3xl mx-auto w-full">
+          <Card>
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl">Contact Us</CardTitle>
+              <CardDescription>Have a question? We'd love to hear from you.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Input placeholder="Name" />
+                  <Input type="email" placeholder="Email" />
+                </div>
+                <Textarea placeholder="Message" rows={5} />
+              </form>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full">Send Message</Button>
+            </CardFooter>
+          </Card>
+        </section>
+
+      </div>
     </div>
   );
 }
