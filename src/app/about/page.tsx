@@ -27,7 +27,7 @@ export default function AboutPage() {
                 SHYAM FURNITURE IS A PREMIUM FURNITURE RETAILER SPECIALIZING IN HANDCRAFTED, HIGH-QUALITY PRODUCTS.
                 </h2>
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-md">
-                    <Image src="https://placehold.co/600x400.png" alt="High-quality furniture" layout="fill" objectFit="cover" data-ai-hint="furniture store interior" />
+                    <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/23220f28-0c9e-4c94-973a-e1b598918b74.png" alt="High-quality furniture" layout="fill" objectFit="cover" data-ai-hint="furniture store interior" />
                 </div>
             </div>
           </div>
