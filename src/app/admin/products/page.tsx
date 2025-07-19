@@ -2,11 +2,8 @@ import Link from "next/link"
 import {
   File,
   ListFilter,
-  MoreHorizontal,
-  PlusCircle,
 } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -40,9 +37,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import Image from "next/image"
+import { MoreHorizontal } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 import dbConnect from "@/lib/dbConnect"
 import Product from "@/models/Product"
+import { ProductActions } from "./ProductActions"
 
 async function getProducts() {
   await dbConnect();
@@ -64,43 +64,7 @@ export default async function AdminProductsPage() {
             Archived
           </TabsTrigger>
         </TabsList>
-        <div className="ml-auto flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="h-8 gap-1">
-                <ListFilter className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                  Filter
-                </span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuCheckboxItem checked>
-                Active
-              </DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>Draft</DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>
-                Archived
-              </DropdownMenuCheckboxItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Button size="sm" variant="outline" className="h-8 gap-1">
-            <File className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-              Export
-            </span>
-          </Button>
-          <Button size="sm" className="h-8 gap-1" asChild>
-            <Link href="/admin/products/new">
-              <PlusCircle className="h-3.5 w-3.5" />
-              <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Add Product
-              </span>
-            </Link>
-          </Button>
-        </div>
+        <ProductActions products={products} />
       </div>
       <TabsContent value="all">
         <Card>
