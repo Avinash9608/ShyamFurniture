@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4 col-span-1 md:col-span-2 lg:col-span-1">
              <Link href="/" className="flex items-center gap-2">
-                <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/logo.png" alt="Flock Logo" width={32} height={32} />
-                <h1 className="text-2xl font-headline font-bold">Flock</h1>
+                <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/logo.png" alt="Shyam Furniture Logo" width={32} height={32} />
+                <h1 className="text-2xl font-headline font-bold">Shyam Furniture</h1>
             </Link>
             <p className="text-sm text-muted-foreground">
               Crafting comfortable and stylish spaces for modern living. Discover timeless furniture designed to last.
@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Flock. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Shyam Furniture. All rights reserved.</p>
           <Link href="#" className="hover:text-primary transition-colors">Terms & Privacy Policy</Link>
         </div>
       </div>

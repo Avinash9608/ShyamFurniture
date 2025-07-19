@@ -15,8 +15,8 @@ const Header = () => {
     <header className="bg-background/80 backdrop-blur-sm text-foreground sticky top-0 z-40 shadow-sm border-b">
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/logo.png" alt="Flock Logo" width={32} height={32} />
-          <h1 className="text-2xl font-headline font-bold">Flock</h1>
+          <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/logo.png" alt="Shyam Furniture Logo" width={32} height={32} />
+          <h1 className="text-2xl font-headline font-bold">Shyam Furniture</h1>
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link href="/#about-us-call" className="hover:text-primary transition-colors">About Us</Link>

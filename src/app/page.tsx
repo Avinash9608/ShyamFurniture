@@ -130,7 +130,7 @@ export default function Home() {
             </AccordionItem>
              <AccordionItem value="item-4">
               <AccordionTrigger>How can I contact customer support?</AccordionTrigger>
-              <AccordionContent>You can contact our customer support team via email at support@flock.com or call us at (123) 456-7890. Our support hours are Monday to Friday, 9 AM to 5 PM.</AccordionContent>
+              <AccordionContent>You can contact our customer support team via email at support@shyamfurniture.com or call us at (123) 456-7890. Our support hours are Monday to Friday, 9 AM to 5 PM.</AccordionContent>
             </AccordionItem>
           </Accordion>
         </section>
