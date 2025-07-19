@@ -23,8 +23,8 @@ export default function AboutPage() {
       <section id="marketlead-info" className="py-16 md:py-24" style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1684338795288-097525d127f0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D')" }}>
         <div className="max-w-6xl mx-auto px-4">
             <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <h2 className="text-2xl md:text-3xl font-semibold text-primary-foreground font-headline uppercase tracking-widest">
-                SHYAM FURNITURE IS A PREMIUM FURNITURE RETAILER SPECIALIZING IN HANDCRAFTED, HIGH-QUALITY PRODUCTS.
+                <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground font-headline uppercase tracking-wider">
+                Shyam Furniture is a premium furniture retailer specializing in handcrafted, high-quality products.
                 </h2>
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-md">
                     <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/23220f28-0c9e-4c94-973a-e1b598918b74.png" alt="High-quality furniture" layout="fill" objectFit="cover" data-ai-hint="furniture store interior" />
