@@ -79,9 +79,9 @@ export default function Home() {
           </div>
         ))}
         
-        <div className="absolute bottom-4 md:bottom-8 lg:bottom-12 left-4 md:left-8 lg:left-12 z-10">
+        <div className="absolute bottom-0 left-0 z-10">
            <Link href="/products">
-            <Button variant="secondary" size="lg">Explore our products <ArrowRight className="ml-2 h-5 w-5"/></Button>
+            <Button variant="secondary" size="lg" className="rounded-none">Explore our products <ArrowRight className="ml-2 h-5 w-5"/></Button>
           </Link>
         </div>
       </section>
@@ -216,6 +216,4 @@ export default function Home() {
     </div>
   );
 
-    
-
-    
+}
