@@ -4,7 +4,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
 import { ArrowRight, User, Phone, Mail, Truck, ShieldCheck, Tag, MapPin, Star, Instagram } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Product } from '@/lib/types';
 
 
 const heroSlides = [
@@ -195,9 +195,25 @@ const CountdownTimer = () => {
 
 
 export default function Home() {
-  const popularProducts = products.slice(0, 6);
+  const [popularProducts, setPopularProducts] = useState<Product[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeAccordionItem, setActiveAccordionItem] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('/api/admin/products');
+        if (res.ok) {
+          const allProducts = await res.json();
+          // For now, let's take the first 6 as "popular"
+          setPopularProducts(allProducts.slice(0, 6));
+        }
+      } catch (error) {
+        console.error("Failed to fetch products for homepage", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -309,7 +325,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Popular Items On Sale</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {popularProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
             <div className="mt-12 flex justify-center">
@@ -356,7 +372,7 @@ export default function Home() {
                 </Button>
             </div>
         </section>
-
+        
         <section id="gallery" className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Our Furniture in Your Homes</h2>
             <p className="text-muted-foreground mb-8">Tag us on Instagram <a href="#" className="text-primary hover:underline">@ShyamFurniture</a></p>

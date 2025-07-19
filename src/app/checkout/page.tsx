@@ -79,7 +79,7 @@ export default function CheckoutPage() {
                 <FormField name="address" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Address</FormLabel><FormControl><Input {...field} autoComplete="shipping street-address" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="city" control={form.control} render={({ field }) => (<FormItem><FormLabel>City</FormLabel><FormControl><Input {...field} autoComplete="shipping address-level2" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="postalCode" control={form.control} render={({ field }) => (<FormItem><FormLabel>Postal Code</FormLabel><FormControl><Input {...field} autoComplete="shipping postal-code" /></FormControl><FormMessage /></FormItem>)} />
-                <FormField name="country" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Country</FormLabel><FormControl><Input {...field} autoComplete="country-name" /></FormControl><FormMessage /></FormItem>)} />
+                <FormField name="country" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Country</FormLabel><FormControl><Input {...field} autoComplete="country-name" /></FormControl><FormMessage /></FormMessage>)} />
                 <FormField name="phone" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Phone (Optional)</FormLabel><FormControl><Input {...field} autoComplete="tel" /></FormControl><FormMessage /></FormItem>)} />
               </CardContent>
             </Card>
@@ -101,7 +101,7 @@ export default function CheckoutPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-4 max-h-64 overflow-y-auto pr-2">
                   {cart.map(item => (
-                    <div key={item.id} className="flex items-center gap-4">
+                    <div key={item._id} className="flex items-center gap-4">
                       <div className="relative w-16 h-16 rounded-md overflow-hidden">
                         <Image src={item.images[0]} alt={item.name} fill className="object-cover" />
                       </div>

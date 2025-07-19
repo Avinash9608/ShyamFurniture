@@ -35,7 +35,7 @@ export default function CartPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             {cart.map(item => (
-              <Card key={item.id} className="overflow-hidden">
+              <Card key={item._id} className="overflow-hidden">
                 <CardContent className="p-4 flex items-center gap-4">
                   <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
                     <Image
@@ -47,28 +47,28 @@ export default function CartPage() {
                   </div>
                   <div className="flex-grow flex flex-col md:flex-row justify-between items-start md:items-center">
                     <div className="mb-2 md:mb-0">
-                      <Link href={`/products/${item.id}`} className="hover:underline">
+                      <Link href={`/products/${item._id}`} className="hover:underline">
                         <h2 className="text-lg md:text-xl font-headline font-semibold">{item.name}</h2>
                       </Link>
                       <p className="text-md md:text-lg font-semibold text-muted-foreground">${item.price.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center gap-2">
                        <div className="flex items-center border rounded-md">
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => updateQuantity(item._id, item.quantity - 1)}>
                           <Minus className="h-4 w-4" />
                         </Button>
                         <Input
                           type="number"
                           value={item.quantity}
-                          onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
+                          onChange={(e) => updateQuantity(item._id, parseInt(e.target.value) || 1)}
                           className="w-12 h-8 text-center border-x border-y-0"
                           min="1"
                         />
-                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => updateQuantity(item._id, item.quantity + 1)}>
                           <Plus className="h-4 w-4" />
                         </Button>
                       </div>
-                       <Button variant="destructive" size="icon" onClick={() => removeFromCart(item.id)}>
+                       <Button variant="destructive" size="icon" onClick={() => removeFromCart(item._id)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>

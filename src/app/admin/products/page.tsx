@@ -105,7 +105,7 @@ export default async function AdminProductsPage() {
                             alt={product.name}
                             className="aspect-square rounded-md object-cover"
                             height="64"
-                            src={product.images[0] || "/placeholder.svg"}
+                            src={product.images[0] || "https://placehold.co/64x64.png"}
                             width="64"
                         />
                         </TableCell>

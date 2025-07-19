@@ -8,8 +8,8 @@ import { useToast } from '@/hooks/use-toast';
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
+  removeFromCart: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   cartTotal: number;
   cartCount: number;
@@ -34,10 +34,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: Product, quantity = 1) => {
     setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.id === product.id);
+      const existingItem = prevCart.find(item => item._id === product._id);
       if (existingItem) {
         return prevCart.map(item =>
-          item.id === product.id
+          item._id === product._id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
@@ -50,22 +50,22 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (productId: number) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== productId));
+  const removeFromCart = (productId: string) => {
+    setCart(prevCart => prevCart.filter(item => item._id !== productId));
      toast({
       title: "Removed from cart",
       description: `Item has been removed from your cart.`,
     });
   };
 
-  const updateQuantity = (productId: number, quantity: number) => {
+  const updateQuantity = (productId: string, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(productId);
       return;
     }
     setCart(prevCart =>
       prevCart.map(item =>
-        item.id === productId ? { ...item, quantity } : item
+        item._id === productId ? { ...item, quantity } : item
       )
     );
   };

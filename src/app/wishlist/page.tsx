@@ -7,14 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, Trash2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/hooks/useCart';
+import { Product } from '@/lib/types';
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
 
-  const handleMoveToCart = (product: any) => {
+  const handleMoveToCart = (product: Product) => {
     addToCart(product);
-    removeFromWishlist(product.id);
+    removeFromWishlist(product._id);
   }
 
   return (
@@ -38,7 +39,7 @@ export default function WishlistPage() {
       ) : (
         <div className="space-y-4">
           {wishlist.map(item => (
-            <Card key={item.id} className="overflow-hidden">
+            <Card key={item._id} className="overflow-hidden">
               <CardContent className="p-4 flex flex-col md:flex-row items-center gap-4">
                 <div className="relative w-32 h-32 flex-shrink-0">
                   <Image
@@ -49,7 +50,7 @@ export default function WishlistPage() {
                   />
                 </div>
                 <div className="flex-grow">
-                  <Link href={`/products/${item.id}`} className="hover:underline">
+                  <Link href={`/products/${item._id}`} className="hover:underline">
                     <h2 className="text-xl font-headline font-semibold">{item.name}</h2>
                   </Link>
                   <p className="text-lg font-semibold">${item.price.toFixed(2)}</p>
@@ -58,7 +59,7 @@ export default function WishlistPage() {
                   <Button variant="outline" onClick={() => handleMoveToCart(item)}>
                     <ShoppingCart className="mr-2 h-4 w-4" /> Move to Cart
                   </Button>
-                  <Button variant="destructive" size="icon" onClick={() => removeFromWishlist(item.id)}>
+                  <Button variant="destructive" size="icon" onClick={() => removeFromWishlist(item._id)}>
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>

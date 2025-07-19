@@ -8,8 +8,8 @@ import { useToast } from '@/hooks/use-toast';
 interface WishlistContextType {
   wishlist: WishlistItem[];
   addToWishlist: (product: Product) => void;
-  removeFromWishlist: (productId: number) => void;
-  isInWishlist: (productId: number) => boolean;
+  removeFromWishlist: (productId: string) => void;
+  isInWishlist: (productId: string) => boolean;
   wishlistCount: number;
 }
 
@@ -32,7 +32,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
 
   const addToWishlist = (product: Product) => {
     setWishlist(prevWishlist => {
-      if (prevWishlist.find(item => item.id === product.id)) {
+      if (prevWishlist.find(item => item._id === product._id)) {
         return prevWishlist;
       }
       return [...prevWishlist, product];
@@ -43,16 +43,16 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromWishlist = (productId: number) => {
-    setWishlist(prevWishlist => prevWishlist.filter(item => item.id !== productId));
+  const removeFromWishlist = (productId: string) => {
+    setWishlist(prevWishlist => prevWishlist.filter(item => item._id !== productId));
     toast({
       title: "Removed from wishlist",
       description: `Item has been removed from your wishlist.`,
     });
   };
 
-  const isInWishlist = (productId: number) => {
-    return wishlist.some(item => item.id === productId);
+  const isInWishlist = (productId: string) => {
+    return wishlist.some(item => item._id === productId);
   };
   
   const wishlistCount = wishlist.length;
