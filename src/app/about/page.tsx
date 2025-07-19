@@ -28,13 +28,12 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamMembers.map((member, index) => (
             <div key={index} className="p-8 rounded-lg bg-card border border-border/50 text-center flex flex-col items-center shadow-lg transition-transform hover:scale-105">
-               <div className="relative w-32 h-32">
+               <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-background">
                 <Image
                   src={member.image}
                   alt={member.name}
-                  width={160}
-                  height={160}
-                  className="rounded-full object-cover border-4 border-background"
+                  layout="fill"
+                  className="object-cover"
                 />
               </div>
               <h2 className="text-xl font-bold font-headline mt-4">{member.name}</h2>
