@@ -127,12 +127,12 @@ const faqItems = [
 ];
 
 const galleryImages = [
-    { src: 'https://placehold.co/500x700.png', alt: 'Living room with modern sofa', hint: 'living room sofa' },
-    { src: 'https://placehold.co/500x500.png', alt: 'Cozy bedroom setup', hint: 'bedroom furniture' },
-    { src: 'https://placehold.co/500x600.png', alt: 'Dining table set', hint: 'dining table' },
-    { src: 'https://placehold.co/500x400.png', alt: 'Office with ergonomic chair', hint: 'office chair' },
-    { src: 'https://placehold.co/500x500.png', alt: 'Bookshelf styled with decor', hint: 'bookshelf decor' },
-    { src: 'https://placehold.co/500x750.png', alt: 'Accent chair in a corner', hint: 'accent chair' },
+    { src: 'https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjAwfHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D', alt: 'Modern living room with a stylish sofa', hint: 'living room' },
+    { src: 'https://images.unsplash.com/photo-1649511134921-67afc567280c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjA2fHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D', alt: 'Stylish accent chair in a well-lit room', hint: 'accent chair' },
+    { src: 'https://plus.unsplash.com/premium_photo-1683141318297-75a3d8e86476?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjE3fHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D', alt: 'Modern bedroom with a wooden bed frame', hint: 'bedroom furniture' },
+    { src: 'https://images.unsplash.com/photo-1597425842320-de0c26b33327?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjM0fHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D', alt: 'Cozy living space with a comfortable sofa', hint: 'living sofa' },
+    { src: 'https://images.unsplash.com/photo-1604061986761-d9d0cc41b0d1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQ3fHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D', alt: 'Minimalist workspace with desk and chair', hint: 'office furniture' },
+    { src: 'https://images.unsplash.com/photo-1638962502979-05d81dcaa096?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzAzfHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D', alt: 'Elegant living room with a green sofa', hint: 'green sofa' },
 ];
 
 
@@ -477,5 +477,7 @@ export default function Home() {
   );
 
 }
+
+    
 
     
