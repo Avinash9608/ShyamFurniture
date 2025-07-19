@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4">
             <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground font-headline uppercase tracking-wider">
-                Shyam Furniture is a premium furniture retailer specializing in handcrafted, high-quality products.
+                A premium furniture retailer specializing in handcrafted, high-quality products.
                 </h2>
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-md">
                     <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/23220f28-0c9e-4c94-973a-e1b598918b74.png" alt="High-quality furniture" layout="fill" objectFit="cover" data-ai-hint="furniture store interior" />
