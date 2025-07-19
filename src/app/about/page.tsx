@@ -28,7 +28,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamMembers.map((member, index) => (
             <div key={index} className="p-8 rounded-lg bg-card border border-border/50 text-center flex flex-col items-center shadow-lg transition-transform hover:scale-105">
-               <div className="relative w-32 h-32 md:w-40 md:h-40">
+               <div className="relative w-32 h-32">
                 <Image
                   src={member.image}
                   alt={member.name}
