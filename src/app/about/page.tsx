@@ -31,7 +31,7 @@ export default function AboutPage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 5000); // Change image every 5 seconds
+    }, 7000); // Change image every 7 seconds to allow for animation
 
     return () => clearInterval(interval);
   }, []);
@@ -42,15 +42,19 @@ export default function AboutPage() {
       <section id="marketlead-info" className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           {backgroundImages.map((src, index) => (
-             <Image
+             <div
               key={src}
-              src={src}
-              alt="Background furniture"
-              layout="fill"
-              objectFit="cover"
-              className={`transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
-              priority={index === 0}
-            />
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+             >
+                <Image
+                  src={src}
+                  alt="Background furniture"
+                  layout="fill"
+                  objectFit="cover"
+                  className={`w-full h-full ${index === currentImageIndex ? 'ken-burns' : ''}`}
+                  priority={index === 0}
+                />
+             </div>
           ))}
         </div>
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
