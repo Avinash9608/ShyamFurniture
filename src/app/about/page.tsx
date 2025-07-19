@@ -47,10 +47,13 @@ export default function AboutPage() {
         
         <section id="timeline">
             <h2>HISTORY</h2>
-            <div className="timeline-container-inner">
+            <div className="timeline-container">
               {historyData.map((item, index) => (
-                <div key={index} className={`timeline-content ${index % 2 === 0 ? 'left' : 'right'}`} data-year={item.year}>
-                    <p>{item.description}</p>
+                <div key={index} className="timeline-item">
+                  <div className="timeline-item-content">
+                      <span className="timeline-year">{item.year}</span>
+                      <p className="timeline-description">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -71,6 +74,7 @@ export default function AboutPage() {
                 />
                 <div className="name-container">
                   <span className="name">{member.name}</span>
+                  <span className="role">{member.role}</span>
                 </div>
               </div>
             ))}

@@ -113,24 +113,37 @@
 
 .profile .name-container {
     position: absolute;
-    bottom: -20px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
     transition: all 0.3s;
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
 .profile .name {
   background-color: #10996d;
   color: #fff;
   font-family: "Bebas Neue", cursive;
-  padding: 15px 30px;
+  padding: 10px 25px;
   border-radius: 100px;
   white-space: nowrap;
   letter-spacing: 1px;
-  font-size: 20px;
+  font-size: 18px;
   box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
+}
+
+.profile .role {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+  background: white;
+  padding: 2px 12px;
+  border-radius: 12px;
 }
 
 .profile .name::before {
@@ -146,7 +159,7 @@
 
 .profile:hover .name-container {
   opacity: 1;
-  bottom: 0px;
+  bottom: -20px;
 }
 
 .gradient-cta {
@@ -171,91 +184,123 @@
 #timeline h2 {
   @apply text-center text-primary font-bold text-3xl md:text-4xl uppercase tracking-widest mb-16;
 }
-.timeline-container-inner {
-  @apply relative max-w-4xl mx-auto;
+.timeline-container {
+    max-width: 60rem;
+    margin: auto;
+    position: relative;
+    padding: 2rem 0;
 }
-/* The actual timeline (the vertical ruler) */
-.timeline-container-inner::after {
-  content: '';
-  @apply absolute w-1 h-full bg-primary/20 top-0;
-  left: 50%;
-  margin-left: -2px;
-}
-
-/* Container around content */
-.timeline-content {
-  @apply p-4 bg-card rounded-lg shadow-lg relative w-full;
-  max-width: 44%;
-}
-.timeline-content.left {
-  @apply mr-auto;
-}
-.timeline-content.right {
-  @apply ml-auto;
-}
-
-/* The circles on the timeline */
-.timeline-content::after {
-  content: attr(data-year);
-  @apply absolute w-auto px-4 py-2 bg-primary text-primary-foreground rounded-full z-10 text-sm font-bold flex items-center justify-center;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.timeline-content.left::after {
-  right: -24%; /* Adjust this to position the year */
-}
-.timeline-content.right::after {
-  left: -24%; /* Adjust this to position the year */
-}
-
-/* Add arrows to the timeline container */
-.timeline-content::before {
-    content: " ";
-    height: 0;
+.timeline-container::before {
+    content: '';
     position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #3b82f6, #8b5cf6, #ec4899);
+}
+
+.timeline-item {
+    padding: 1rem 3rem;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item-content {
+    padding: 1.5rem;
+    background-color: hsl(var(--card));
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    border-left: 4px solid;
+}
+.timeline-item:nth-child(1) .timeline-item-content { border-color: #3b82f6; }
+.timeline-item:nth-child(2) .timeline-item-content { border-color: #10b981; }
+.timeline-item:nth-child(3) .timeline-item-content { border-color: #ef4444; }
+.timeline-item:nth-child(4) .timeline-item-content { border-color: #f59e0b; }
+.timeline-item:nth-child(5) .timeline-item-content { border-color: #8b5cf6; }
+.timeline-item:nth-child(6) .timeline-item-content { border-color: #ec4899; }
+.timeline-item:nth-child(7) .timeline-item-content { border-color: #6366f1; }
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -12.5px;
+    background-color: white;
+    border: 4px solid;
     top: 50%;
     transform: translateY(-50%);
-    width: 0;
+    border-radius: 50%;
     z-index: 1;
-    border: medium solid hsl(var(--card));
-}
-.timeline-content.left::before {
-    right: -10px;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent hsl(var(--card));
-}
-.timeline-content.right::before {
-    left: -10px;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent hsl(var(--card)) transparent transparent;
 }
 
-
-/* Fix the circle for the last item */
-.timeline-container-inner .timeline-content:not(:last-child) {
-  @apply mb-12;
+.timeline-item:nth-child(odd)::after {
+    right: -14.5px;
 }
+.timeline-item:nth-child(even)::after {
+    left: -14.5px;
+}
+
+.timeline-item:nth-child(1)::after { border-color: #3b82f6; }
+.timeline-item:nth-child(2)::after { border-color: #10b981; }
+.timeline-item:nth-child(3)::after { border-color: #ef4444; }
+.timeline-item:nth-child(4)::after { border-color: #f59e0b; }
+.timeline-item:nth-child(5)::after { border-color: #8b5cf6; }
+.timeline-item:nth-child(6)::after { border-color: #ec4899; }
+.timeline-item:nth-child(7)::after { border-color: #6366f1; }
+
+.timeline-year {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-weight: 700;
+    color: white;
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.timeline-item:nth-child(1) .timeline-year { background-color: #3b82f6; }
+.timeline-item:nth-child(2) .timeline-year { background-color: #10b981; }
+.timeline-item:nth-child(3) .timeline-year { background-color: #ef4444; }
+.timeline-item:nth-child(4) .timeline-year { background-color: #f59e0b; }
+.timeline-item:nth-child(5) .timeline-year { background-color: #8b5cf6; }
+.timeline-item:nth-child(6) .timeline-year { background-color: #ec4899; }
+.timeline-item:nth-child(7) .timeline-year { background-color: #6366f1; }
+
+.timeline-description {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
 
 @media screen and (max-width: 768px) {
-  .timeline-container-inner::after {
-    left: 31px;
+  .timeline-container::before {
+    left: 15px;
   }
-
-  .timeline-content {
-    max-width: 100%;
-    width: auto;
-    margin-left: 70px !important;
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 15px;
   }
-  
-  .timeline-content::before {
-    left: -10px;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent hsl(var(--card)) transparent transparent;
+  .timeline-item:nth-child(even) {
+    left: 0%;
   }
-
-  .timeline-content.left::after, .timeline-content.right::after {
-    left: -80px;
-    right: auto;
+  .timeline-item::after {
+    left: 3px;
+  }
+  .timeline-item:nth-child(odd)::after, .timeline-item:nth-child(even)::after {
+    left: 3px;
   }
 }
