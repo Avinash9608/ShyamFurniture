@@ -90,19 +90,27 @@ export default function Home() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
 
-        <section id="about-us-call">
-          <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold">🪑 About Shyam Furniture</h2>
-              <p className="mt-4 text-muted-foreground">
-                  At Shyam Furniture, we believe your home deserves furniture that’s not just functional, but full of style, comfort, and character. We specialize in delivering premium-quality furniture with a strong commitment to service and satisfaction.
-              </p>
-              <p className="mt-4 text-muted-foreground">
-                  To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.
-              </p>
-               <Button asChild className="mt-6">
-                <Link href="/about">Meet Our Team <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
-          </div>
+        <section id="about-us-call" className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="md:order-2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+              <Image src="https://placehold.co/600x400.png" data-ai-hint="elegant living room" alt="Stylish furniture in a modern living room" width={600} height={400} className="w-full h-full object-cover" />
+            </div>
+            <div className="space-y-6 md:order-1 text-left">
+                <h2 className="text-3xl font-bold flex items-center gap-3">
+                  <span className="text-4xl">🪑</span>
+                  About Shyam Furniture
+                </h2>
+                <div className="space-y-4 text-muted-foreground">
+                  <p>
+                      At Shyam Furniture, we believe your home deserves furniture that’s not just functional, but full of style, comfort, and character. We specialize in delivering premium-quality furniture with a strong commitment to service and satisfaction.
+                  </p>
+                  <p>
+                      To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.
+                  </p>
+                </div>
+                <Button asChild className="mt-6">
+                  <Link href="/about">Meet Our Team <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+            </div>
         </section>
 
         <section id="claims" className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
