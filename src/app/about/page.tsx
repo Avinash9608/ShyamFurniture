@@ -9,7 +9,7 @@ const teamMembers = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-background text-foreground min-h-screen">
+    <div className="bg-background text-foreground min-h-screen about-page">
       <header 
         className="relative w-full min-h-[25em] flex flex-col justify-center items-center text-center bg-cover bg-center"
         style={{backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop')"}}
@@ -58,6 +58,7 @@ export default function AboutPage() {
                   alt={`Photo of ${member.name}`}
                   width={200}
                   height={200}
+                  className="profile-img"
                 />
                 <span className="name">{member.name}</span>
               </div>

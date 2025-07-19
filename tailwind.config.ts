@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['"Plus Jakarta Sans"', 'sans-serif'],
-        headline: ['Merriweather', 'serif'],
+        body: ['"Roboto"', 'sans-serif'],
+        headline: ['"Montserrat"', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -47,6 +47,8 @@ export default {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+          dark: '#333333',
+          light: '#DDDDDD'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',

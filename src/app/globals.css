@@ -4,58 +4,48 @@
 
 @layer base {
   :root {
-    --background: 257 60% 98%;
-    --foreground: 40 4% 16%;
-    --card: 257 60% 98%;
-    --card-foreground: 40 4% 16%;
-    --popover: 257 60% 98%;
-    --popover-foreground: 40 4% 16%;
-    --primary: 32 60% 59%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 40 6% 92%;
-    --secondary-foreground: 40 4% 16%;
-    --muted: 40 6% 92%;
-    --muted-foreground: 40 4% 45%;
-    --accent: 78 35% 80%;
-    --accent-foreground: 40 4% 16%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 6% 85%;
-    --input: 40 6% 85%;
-    --ring: 32 60% 59%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 40 4% 16%;
-    --foreground: 257 60% 98%;
-    --card: 40 4% 16%;
-    --card-foreground: 257 60% 98%;
-    --popover: 40 4% 16%;
-    --popover-foreground: 257 60% 98%;
-    --primary: 32 60% 59%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 40 4% 20%;
-    --secondary-foreground: 257 60% 98%;
-    --muted: 40 4% 20%;
-    --muted-foreground: 40 4% 65%;
-    --accent: 78 35% 80%;
-    --accent-foreground: 40 4% 16%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 4% 25%;
-    --input: 40 4% 25%;
-    --ring: 32 60% 59%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
 }
 
@@ -72,9 +62,22 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
   }
+
+  .about-page {
+    @apply bg-gray-50;
+  }
+  
+  .about-page header {
+     background: linear-gradient(to top, #1f2c3a 0%, #2f3c4742 100%),
+    url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop")
+      no-repeat 50% 50% / cover;
+  }
+
+  .about-page header .text-foreground {
+    @apply text-white;
+  }
 }
 
-/* Custom styles for the team section */
 .team {
   @apply w-full flex flex-col justify-center items-center;
 }
@@ -104,7 +107,7 @@
   transform: translateY(25px);
 }
 
-.profile img {
+.profile .profile-img {
   max-width: 180px;
   height: 180px;
   object-fit: cover;
@@ -114,7 +117,7 @@
   cursor: pointer;
 }
 
-.profile:not(:first-child) img {
+.profile:not(:first-child) {
   margin-left: -40px;
 }
 
@@ -133,7 +136,7 @@
   font-size: 20px;
   opacity: 0;
   transition: all 0.3s;
-  pointer-events: none; /* So it doesn't block hover on image */
+  pointer-events: none;
 }
 
 .profile .name::before {
@@ -151,4 +154,8 @@
   opacity: 1;
   transform: translateX(-50%);
   box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
+}
+
+.gradient-cta {
+  background-image: linear-gradient(to right, hsl(var(--accent-dark)), hsl(var(--accent-light)));
 }
