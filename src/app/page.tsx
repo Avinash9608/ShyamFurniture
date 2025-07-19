@@ -117,7 +117,7 @@ const faqItems = [
   {
     name: "Anupam Singh",
     review: "I ordered a bed set and it arrived on time and perfectly packed. Very satisfied with the service and price.",
-     avatar: "https://placehold.co/100x100.png"
+     avatar: "https://plus.unsplash.com/premium_photo-1734603747053-05d95a534cdd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjEzfHxib3klMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
   },
   {
     name: "Priya Chaubey",
