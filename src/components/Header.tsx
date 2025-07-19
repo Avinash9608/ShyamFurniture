@@ -19,7 +19,7 @@ const Header = () => {
           <h1 className="text-2xl font-headline font-bold">Shyam Furniture</h1>
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link href="/#about-us-call" className="hover:text-primary transition-colors">About Us</Link>
+          <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <Link href="/products" className="hover:text-primary transition-colors">Products</Link>
           <Link href="/#faq" className="hover:text-primary transition-colors">Services</Link>
           <Link href="/#contact" className="hover:text-primary transition-colors">Contacts</Link>
