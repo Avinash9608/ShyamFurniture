@@ -1,17 +1,21 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
-import { ArrowRight, User, Phone, Mail, Truck, ShieldCheck, Tag } from 'lucide-react';
+import { ArrowRight, User, Phone, Mail, Truck, ShieldCheck, Tag, MapPin, Star } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import Autoplay from "embla-carousel-autoplay"
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 
 const heroSlides = [
   {
@@ -89,6 +93,39 @@ const faqItems = [
     }
   ];
 
+  const testimonials = [
+  {
+    name: "Ayush Raj",
+    review: "Shyam Furniture truly exceeded my expectations. The quality and finish of the furniture is top-notch. Highly recommended!",
+    avatar: "https://placehold.co/100x100.png"
+  },
+  {
+    name: "Sikha Singh",
+    review: "I loved the traditional look with a modern twist. Ordering was simple and the delivery team was very professional.",
+     avatar: "https://placehold.co/100x100.png"
+  },
+  {
+    name: "Abhishek Yadav",
+    review: "Their custom furniture service helped me design exactly what I wanted. Great experience from start to finish.",
+     avatar: "https://placehold.co/100x100.png"
+  },
+  {
+    name: "Amit Sahini",
+    review: "High-quality materials and excellent customer support. Glad to have a trusted furniture store in Saharsa.",
+     avatar: "https://placehold.co/100x100.png"
+  },
+  {
+    name: "Anupam Singh",
+    review: "I ordered a bed set and it arrived on time and perfectly packed. Very satisfied with the service and price.",
+     avatar: "https://placehold.co/100x100.png"
+  },
+  {
+    name: "Priya Chaubey",
+    review: "Beautiful designs and very comfortable furniture. The online ordering system made everything super easy.",
+     avatar: "https://placehold.co/100x100.png"
+  }
+];
+
 
 export default function Home() {
   const popularProducts = products.slice(0, 6);
@@ -101,6 +138,10 @@ export default function Home() {
     }, 5000); // Change slide every 5 seconds
     return () => clearInterval(timer);
   }, []);
+
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnHover: true })
+  );
 
 
   return (
@@ -185,7 +226,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
+        <section id="learn-more" className="flex flex-col md:flex-row-reverse items-center gap-8">
            <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
             </div>
@@ -237,6 +278,42 @@ export default function Home() {
             </div>
         </section>
 
+        <section id="testimonials" className="w-full">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold">🗣️ Customer Testimonials</h2>
+                <p className="text-muted-foreground mt-2">What our customers say about Shyam Furniture</p>
+            </div>
+            <Carousel
+                plugins={[autoplayPlugin.current]}
+                opts={{ align: "start", loop: true }}
+                className="w-full"
+            >
+                <CarouselContent className="-ml-4">
+                    {testimonials.map((testimonial, index) => (
+                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                            <Card className="h-full flex flex-col">
+                                <CardContent className="p-6 flex-1 flex flex-col items-center text-center">
+                                    <Avatar className="w-20 h-20 mb-4 border-4 border-primary/20">
+                                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                                        <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <p className="text-muted-foreground italic">"{testimonial.review}"</p>
+                                </CardContent>
+                                <CardFooter className="flex flex-col items-center gap-2 pt-4 border-t">
+                                    <h3 className="font-bold text-lg">{testimonial.name}</h3>
+                                    <div className="flex text-yellow-500">
+                                        {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
+                                    </div>
+                                </CardFooter>
+                            </Card>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex" />
+                <CarouselNext className="hidden md:flex"/>
+            </Carousel>
+        </section>
+
         <section id="faq" className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">🛋️ Frequently Asked Questions</h2>
           <Accordion 
@@ -284,6 +361,18 @@ export default function Home() {
               <CardDescription>Have a question? We'd love to hear from you.</CardDescription>
             </CardHeader>
             <CardContent>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-center">
+                    <div className="flex flex-col items-center">
+                        <Phone className="h-8 w-8 text-primary mb-2" />
+                        <h3 className="font-bold">Phone</h3>
+                        <a href="tel:+911234567890" className="text-muted-foreground hover:text-primary">+91 123 456 7890</a>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <MapPin className="h-8 w-8 text-primary mb-2" />
+                        <h3 className="font-bold">Address</h3>
+                        <p className="text-muted-foreground">Main Market, Saharsa, Bihar, India</p>
+                    </div>
+                </div>
               <form className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input placeholder="Name" />
