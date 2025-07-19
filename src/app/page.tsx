@@ -34,7 +34,7 @@ const heroSlides = [
     tagline2: "Furniture Banaye Apke Ghar Ko Khaas"
   },
   {
-    image: "https://images.unsplash.com/photo-148890152066-cd403111aeb2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+    image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTc2fHxmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D",
     tagline1: "Ghar Ki Pehchaan",
     tagline2: "Shyam Furniture Ke Saath"
   }
