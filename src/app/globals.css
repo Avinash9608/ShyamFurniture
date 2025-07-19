@@ -367,3 +367,43 @@
 .animated-button:focus::after {
   @apply w-full left-0;
 }
+
+.animated-flip-button {
+  @apply inline-block py-3 px-7 uppercase tracking-[4px] no-underline text-transparent border-2 border-primary text-sm relative font-sans bg-transparent cursor-pointer;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+.animated-flip-button span {
+  @apply text-transparent;
+}
+
+.animated-flip-button::before,
+.animated-flip-button::after {
+  content: attr(data-text);
+  @apply absolute top-0 left-0 w-full h-full bg-primary text-primary-foreground flex justify-center items-center;
+  transition: all 0.5s;
+}
+
+.animated-flip-button::before {
+  content: 'Meet Our Team';
+}
+
+.animated-flip-button::after {
+  content: 'Meet Our Team';
+  left: -100%;
+  transform: scale(0) rotateY(0deg);
+  opacity: 0;
+}
+
+.animated-flip-button:hover::before {
+  left: 100%;
+  transform: scale(0) rotateY(360deg);
+  opacity: 0;
+}
+
+.animated-flip-button:hover::after {
+  left: 0;
+  transform: scale(1) rotateY(360deg);
+  opacity: 1;
+}

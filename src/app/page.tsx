@@ -107,9 +107,9 @@ export default function Home() {
                       To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.
                   </p>
                 </div>
-                <Button asChild className="mt-6">
-                  <Link href="/about">Meet Our Team <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                </Button>
+                <Link href="/about" className="animated-flip-button">
+                    <span>Meet Our Team</span>
+                </Link>
             </div>
         </section>
 
