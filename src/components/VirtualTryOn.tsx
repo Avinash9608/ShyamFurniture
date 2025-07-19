@@ -73,7 +73,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ product }) => {
                         <Card className="aspect-video flex items-center justify-center border-2 border-dashed">
                             {roomPhotoPreview ? (
                                 <div className="relative w-full h-full">
-                                    <Image src={roomPhotoPreview} alt="Room preview" layout="fill" objectFit="contain" />
+                                    <Image src={roomPhotoPreview} alt="Room preview" fill className="object-contain" />
                                 </div>
                             ) : (
                                 <div className="text-center text-muted-foreground p-4">
@@ -118,7 +118,7 @@ const VirtualTryOn: React.FC<VirtualTryOnProps> = ({ product }) => {
                             )}
                             {generatedImage && !isLoading && (
                                 <div className="relative w-full h-full">
-                                    <Image src={generatedImage} alt="Generated image with furniture" layout="fill" objectFit="contain" />
+                                    <Image src={generatedImage} alt="Generated image with furniture" fill className="object-contain" />
                                 </div>
                             )}
                              {!isLoading && !error && !generatedImage && (

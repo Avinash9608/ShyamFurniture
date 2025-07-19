@@ -49,9 +49,8 @@ export default function AboutPage() {
                 <Image
                   src={src}
                   alt="Background furniture"
-                  layout="fill"
-                  objectFit="cover"
-                  className={`w-full h-full ${index === currentImageIndex ? 'ken-burns' : ''}`}
+                  fill
+                  className={`object-cover w-full h-full ${index === currentImageIndex ? 'ken-burns' : ''}`}
                   priority={index === 0}
                 />
              </div>
@@ -64,7 +63,7 @@ export default function AboutPage() {
                 A premium furniture retailer specializing in handcrafted, high-quality products.
                 </h2>
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-md">
-                    <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/23220f28-0c9e-4c94-973a-e1b598918b74.png" alt="High-quality furniture" layout="fill" objectFit="cover" data-ai-hint="furniture store interior" />
+                    <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/23220f28-0c9e-4c94-973a-e1b598918b74.png" alt="High-quality furniture" fill className="object-cover" data-ai-hint="furniture store interior" />
                 </div>
             </div>
           </div>

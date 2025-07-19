@@ -223,8 +223,7 @@ export default function Home() {
               src={slide.image}
               alt="Background furniture"
               fill
-              objectFit="cover"
-              className={`w-full h-full ${index === currentSlide ? 'animate-scroll-left-to-right' : ''}`}
+              className={`object-cover w-full h-full ${index === currentSlide ? 'animate-scroll-left-to-right' : ''}`}
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
@@ -253,8 +252,8 @@ export default function Home() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-20 md:space-y-24">
 
         <section id="about-us-call" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="md:order-2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg">
-              <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/eff87568-186c-4ef5-9096-31ab18cd1768.png" data-ai-hint="furniture store interior" alt="Stylish furniture in a modern living room" width={600} height={400} className="w-full h-full object-cover" />
+            <div className="md:order-2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg relative">
+              <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/eff87568-186c-4ef5-9096-31ab18cd1768.png" data-ai-hint="furniture store interior" alt="Stylish furniture in a modern living room" fill className="object-cover" />
             </div>
             <div className="space-y-6 md:order-1 text-center md:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center md:justify-start gap-3">
@@ -294,8 +293,8 @@ export default function Home() {
         </section>
 
         <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
-           <div className="md:w-1/2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg">
-              <Image src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
+           <div className="md:w-1/2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg relative">
+              <Image src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" fill className="object-cover" />
             </div>
           <div className="md:w-1/2 space-y-4 text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-bold">Built to Last and Modern</h2>
@@ -363,7 +362,7 @@ export default function Home() {
             <p className="text-muted-foreground mb-8">Tag us on Instagram <a href="#" className="text-primary hover:underline">@ShyamFurniture</a></p>
             <div className="masonry-grid">
                 {galleryImages.map((image, index) => (
-                    <div key={index} className="masonry-item group">
+                    <div key={index} className="masonry-item group relative">
                         <Image src={image.src} alt={image.alt} data-ai-hint={image.hint} width={500} height={700} className="w-full h-auto rounded-lg" />
                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <Instagram className="h-10 w-10 text-white" />
