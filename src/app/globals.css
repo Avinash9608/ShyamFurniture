@@ -172,21 +172,13 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  padding: 8rem 1rem;
 }
 #marketlead-info::before {
   content: '';
   position: absolute;
   inset: 0;
   background-color: rgba(0,0,0,0.5);
-}
-#marketlead-info .max-w-4xl {
-  position: relative;
-  z-index: 1;
-  background: hsla(0, 0%, 100%, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: var(--radius);
+  backdrop-filter: blur(4px);
 }
 
 #marketlead-info h2 {
