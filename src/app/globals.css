@@ -613,3 +613,27 @@
     transform: translateY(3rem) scale(0.2);
   }
 }
+
+/* Offer Section */
+.offer-section {
+    @apply text-center py-16 px-4 rounded-lg text-white relative overflow-hidden;
+    background: linear-gradient(45deg, #1a237e, #3949ab, #5c6bc0);
+}
+.offer-section .offer-content {
+    @apply relative z-10;
+}
+
+/* Gallery Section */
+.masonry-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.masonry-item {
+    @apply relative overflow-hidden rounded-lg shadow-md;
+    break-inside: avoid;
+}
+
+.masonry-item img {
+    @apply transition-transform duration-300 ease-in-out group-hover:scale-105;
+}

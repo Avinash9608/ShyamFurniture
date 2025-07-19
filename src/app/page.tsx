@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
-import { ArrowRight, User, Phone, Mail, Truck, ShieldCheck, Tag, MapPin, Star } from 'lucide-react';
+import { ArrowRight, User, Phone, Mail, Truck, ShieldCheck, Tag, MapPin, Star, Instagram } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay"
@@ -125,6 +125,67 @@ const faqItems = [
      avatar: "https://plus.unsplash.com/premium_photo-1682092039530-584ae1d9da7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmwlMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
   }
 ];
+
+const galleryImages = [
+    { src: 'https://placehold.co/500x700.png', alt: 'Living room with modern sofa', hint: 'living room sofa' },
+    { src: 'https://placehold.co/500x500.png', alt: 'Cozy bedroom setup', hint: 'bedroom furniture' },
+    { src: 'https://placehold.co/500x600.png', alt: 'Dining table set', hint: 'dining table' },
+    { src: 'https://placehold.co/500x400.png', alt: 'Office with ergonomic chair', hint: 'office chair' },
+    { src: 'https://placehold.co/500x500.png', alt: 'Bookshelf styled with decor', hint: 'bookshelf decor' },
+    { src: 'https://placehold.co/500x750.png', alt: 'Accent chair in a corner', hint: 'accent chair' },
+];
+
+
+const CountdownTimer = () => {
+    const calculateTimeLeft = () => {
+        const difference = +new Date("2024-12-31T23:59:59") - +new Date();
+        let timeLeft = {};
+
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
+            };
+        }
+        return timeLeft;
+    };
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+        return () => clearTimeout(timer);
+    });
+
+    const timerComponents: JSX.Element[] = [];
+
+    Object.keys(timeLeft).forEach((interval) => {
+        // @ts-ignore
+        if (!timeLeft[interval] && timeLeft[interval] !== 0) {
+            return;
+        }
+
+        timerComponents.push(
+            <div key={interval} className="flex flex-col items-center">
+                <span className="text-4xl font-bold">
+                    {/* @ts-ignore */}
+                    {String(timeLeft[interval]).padStart(2, '0')}
+                </span>
+                <span className="text-sm uppercase">{interval}</span>
+            </div>
+        );
+    });
+
+    return (
+        <div className="flex justify-center gap-4 md:gap-8">
+            {timerComponents.length ? timerComponents : <span>Offer Expired!</span>}
+        </div>
+    );
+};
 
 
 export default function Home() {
@@ -314,6 +375,34 @@ export default function Home() {
             </Carousel>
         </section>
 
+        <section id="limited-offer" className="offer-section">
+            <div className="offer-content">
+                <h2 className="text-4xl font-headline font-bold mb-2">Limited Time Offer!</h2>
+                <p className="text-xl mb-6">Flat <span className="text-yellow-400 font-bold">10% Off</span> on All Sofa Sets</p>
+                <CountdownTimer />
+                <Button size="lg" className="mt-8">
+                    <Link href="https://wa.me/911234567890?text=I'm_interested_in_the_10%_off_sofa_deal!">
+                        Claim Offer on WhatsApp
+                    </Link>
+                </Button>
+            </div>
+        </section>
+
+        <section id="gallery" className="text-center">
+            <h2 className="text-3xl font-bold mb-2">Our Furniture in Your Homes</h2>
+            <p className="text-muted-foreground mb-8">Tag us on Instagram <a href="#" className="text-primary hover:underline">@ShyamFurniture</a></p>
+            <div className="masonry-grid">
+                {galleryImages.map((image, index) => (
+                    <div key={index} className="masonry-item group">
+                        <Image src={image.src} alt={image.alt} data-ai-hint={image.hint} width={500} height={700} className="w-full h-auto rounded-lg" />
+                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <Instagram className="h-10 w-10 text-white" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
         <section id="faq" className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">🛋️ Frequently Asked Questions</h2>
           <Accordion 
@@ -382,5 +471,3 @@ export default function Home() {
   );
 
 }
-
-    
