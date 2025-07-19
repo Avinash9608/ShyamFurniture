@@ -97,22 +97,22 @@ const faqItems = [
   {
     name: "Ayush Raj",
     review: "Shyam Furniture truly exceeded my expectations. The quality and finish of the furniture is top-notch. Highly recommended!",
-    avatar: "https://placehold.co/100x100.png"
+    avatar: "https://plus.unsplash.com/premium_photo-1691030254390-aa56b22e6a45?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fGJveSUyMGluZGlhbnxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     name: "Sikha Singh",
     review: "I loved the traditional look with a modern twist. Ordering was simple and the delivery team was very professional.",
-     avatar: "https://placehold.co/100x100.png"
+     avatar: "https://images.unsplash.com/photo-1628620835051-8f40f48c928d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMGluZGlhbnxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     name: "Abhishek Yadav",
     review: "Their custom furniture service helped me design exactly what I wanted. Great experience from start to finish.",
-     avatar: "https://placehold.co/100x100.png"
+     avatar: "https://images.unsplash.com/photo-1632820324313-ee2704746bfd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTc2fHxib3klMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
   },
   {
     name: "Amit Sahini",
     review: "High-quality materials and excellent customer support. Glad to have a trusted furniture store in Saharsa.",
-     avatar: "https://placehold.co/100x100.png"
+     avatar: "https://images.unsplash.com/photo-1659538880931-1fed169f0974?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Ym95JTIwaW5kaWFufGVufDB8fDB8fHww"
   },
   {
     name: "Anupam Singh",
@@ -122,7 +122,7 @@ const faqItems = [
   {
     name: "Priya Chaubey",
     review: "Beautiful designs and very comfortable furniture. The online ordering system made everything super easy.",
-     avatar: "https://placehold.co/100x100.png"
+     avatar: "https://plus.unsplash.com/premium_photo-1682092039530-584ae1d9da7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmwlMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
   }
 ];
 
@@ -226,7 +226,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="learn-more" className="flex flex-col md:flex-row-reverse items-center gap-8">
+        <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
            <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
             </div>
