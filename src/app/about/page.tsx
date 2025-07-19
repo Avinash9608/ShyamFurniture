@@ -6,6 +6,15 @@ const teamMembers = [
     { name: "Mr. Gupta", role: "Head of Technical & Logistics", image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
 ];
 
+const historyData = [
+  { year: "1990s", description: "Shyam Furniture founded in the early 1990s" },
+  { year: "2020s", description: "Expansion into modern and custom furniture design in the 2020s" },
+  { year: "2023", description: "Online ordering introduced via WhatsApp and Email in 2023" },
+  { year: "2025", description: "Official website and mobile-friendly catalog launched in 2025" },
+  { year: "Early 2025", description: "Formation of in-house technical and logistics team in early 2025" },
+  { year: "Mid-2025", description: "Dedicated delivery service established within Saharsa in mid-2025" },
+  { year: "Upcoming Year", description: "Planned expansion of delivery to nearby cities in the upcoming year" },
+]
 
 export default function AboutPage() {
   return (
@@ -15,37 +24,37 @@ export default function AboutPage() {
         style={{backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop')"}}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        <div className="relative z-10 w-11/12 md:w-3/4 lg:w-1/2 mt-20 text-foreground">
+        <div className="relative z-10 w-11/12 md:w-3/4 lg:w-1/2 mt-20 text-white">
           <span className="inline-block uppercase tracking-wider text-sm font-semibold">Company Management</span>
           <h1 className="text-2xl md:text-4xl font-bold mt-2">Meet a team of experts and innovators who are pioneers in their field</h1>
         </div>
       </header>
 
-      <main className="relative z-10 max-w-4xl mx-auto px-4 -mt-12 pb-16">
-        <div className="bg-card border border-border/50 rounded-lg p-8 shadow-lg text-card-foreground">
-          <h2 className="text-3xl font-bold font-headline mb-6 text-center">Management Team – Shyam Furniture</h2>
-          <p className="mb-8 text-center text-muted-foreground">
-            At Shyam Furniture, our operations are driven by a dedicated and experienced team, each playing a vital role in ensuring smooth day-to-day functioning and long-term growth:
-          </p>
-          <ul className="space-y-6 text-lg">
-            <li>
-              <h3 className="text-xl font-semibold text-primary">Founder & Visionary</h3>
-              <p className="text-muted-foreground">The foundation of Shyam Furniture was laid by the late Grandfather of Mr. Sahil Gupta, with a commitment to quality and trust.</p>
-            </li>
-            <li>
-              <h3 className="text-xl font-semibold text-primary">Head of Operations</h3>
-              <p className="text-muted-foreground">Mr. Gupta (Father of Sahil Gupta) – With years of experience in furniture and retail, he leads the on-ground operations and maintains strong customer relationships.</p>
-            </li>
-            <li>
-              <h3 className="text-xl font-semibold text-primary">CEO & Managing Director</h3>
-              <p className="text-muted-foreground">Mr. Sahil Gupta – Oversees the overall business strategy, digital expansion, and customer experience. He is responsible for taking the brand to new heights in the modern market.</p>
-            </li>
-            <li>
-              <h3 className="text-xl font-semibold text-primary">Head of Technical & Logistics</h3>
-              <p className="text-muted-foreground">Mr. Gupta (Elder Brother of Sahil) – Manages technical infrastructure, online order systems, inventory coordination, and delivery logistics to ensure efficient service.</p>
-            </li>
-          </ul>
-        </div>
+      <main className="relative z-10">
+        <section id="marketlead-info">
+          <div className="max-w-4xl mx-auto px-4 py-16">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">
+              SHYAM FURNITURE IS A PREMIUM FURNITURE RETAILER SPECIALIZING IN HANDCRAFTED, HIGH-QUALITY PRODUCTS.
+            </h2>
+            <div className="text-center text-muted-foreground space-y-4">
+              <p>We serve customers in the Saharsa region with a wide range of stylish and durable furniture for homes and offices, combining traditional craftsmanship with contemporary design.</p>
+              <p>With a strong local presence built over decades, Shyam Furniture has evolved into a modern retail brand. Our digital platform allows customers to conveniently browse collections and place orders online via our website or mobile application.</p>
+              <p>We are committed to quality, timely delivery, and customer satisfaction — values that have earned the trust of thousands of families.</p>
+              <p>Shyam Furniture is managed by a team of experienced professionals, each contributing to our operational excellence and digital growth.</p>
+            </div>
+          </div>
+        </section>
+        
+        <section id="timeline">
+            <h2>HISTORY</h2>
+            <div className="timeline-container-inner">
+              {historyData.map((item, index) => (
+                <div key={index} className={`timeline-content ${index % 2 === 0 ? 'left' : 'right'}`} data-year={item.year}>
+                    <p>{item.description}</p>
+                </div>
+              ))}
+            </div>
+        </section>
       </main>
 
        <section className="team py-16">
@@ -60,12 +69,13 @@ export default function AboutPage() {
                   height={200}
                   className="profile-img"
                 />
-                <span className="name">{member.name}</span>
+                <div className="name-container">
+                  <span className="name">{member.name}</span>
+                </div>
               </div>
             ))}
           </div>
         </section>
-
     </div>
   );
 }

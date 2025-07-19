@@ -66,20 +66,10 @@
   .about-page {
     @apply bg-gray-50;
   }
-  
-  .about-page header {
-     background: linear-gradient(to top, #1f2c3a 0%, #2f3c4742 100%),
-    url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop")
-      no-repeat 50% 50% / cover;
-  }
-
-  .about-page header .text-foreground {
-    @apply text-white;
-  }
 }
 
 .team {
-  @apply w-full flex flex-col justify-center items-center;
+  @apply w-full flex flex-col justify-center items-center bg-gray-50;
 }
 
 .section-heading {
@@ -104,11 +94,11 @@
 }
 
 .profile:hover {
-  transform: translateY(25px);
+  transform: translateY(-10px);
 }
 
 .profile .profile-img {
-  max-width: 180px;
+  width: 180px;
   height: 180px;
   object-fit: cover;
   border-radius: 50%;
@@ -121,22 +111,26 @@
   margin-left: -40px;
 }
 
+.profile .name-container {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
 .profile .name {
-  position: absolute;
   background-color: #10996d;
   color: #fff;
   font-family: "Bebas Neue", cursive;
   padding: 15px 30px;
   border-radius: 100px;
-  bottom: -80px;
-  left: 50%;
   white-space: nowrap;
-  transform: translate(-50%, -50px);
   letter-spacing: 1px;
   font-size: 20px;
-  opacity: 0;
-  transition: all 0.3s;
-  pointer-events: none;
+  box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
 }
 
 .profile .name::before {
@@ -150,12 +144,118 @@
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.profile:hover .name {
+.profile:hover .name-container {
   opacity: 1;
-  transform: translateX(-50%);
-  box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
+  bottom: 0px;
 }
 
 .gradient-cta {
   background-image: linear-gradient(to right, hsl(var(--accent-dark)), hsl(var(--accent-light)));
+}
+
+/* Marketlead Info */
+#marketlead-info {
+  @apply py-16 md:py-24 bg-background;
+}
+#marketlead-info h2 {
+  @apply text-primary font-bold text-xl md:text-2xl lg:text-3xl uppercase tracking-widest;
+}
+#marketlead-info p {
+  @apply text-muted-foreground;
+}
+
+/* Timeline */
+#timeline {
+  @apply py-16 md:py-24 bg-secondary/30 relative;
+}
+#timeline h2 {
+  @apply text-center text-primary font-bold text-3xl md:text-4xl uppercase tracking-widest mb-16;
+}
+.timeline-container-inner {
+  @apply relative max-w-4xl mx-auto;
+}
+/* The actual timeline (the vertical ruler) */
+.timeline-container-inner::after {
+  content: '';
+  @apply absolute w-1 h-full bg-primary/20 top-0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+/* Container around content */
+.timeline-content {
+  @apply p-4 bg-card rounded-lg shadow-lg relative w-full;
+  max-width: 44%;
+}
+.timeline-content.left {
+  @apply mr-auto;
+}
+.timeline-content.right {
+  @apply ml-auto;
+}
+
+/* The circles on the timeline */
+.timeline-content::after {
+  content: attr(data-year);
+  @apply absolute w-auto px-4 py-2 bg-primary text-primary-foreground rounded-full z-10 text-sm font-bold flex items-center justify-center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.timeline-content.left::after {
+  right: -24%; /* Adjust this to position the year */
+}
+.timeline-content.right::after {
+  left: -24%; /* Adjust this to position the year */
+}
+
+/* Add arrows to the timeline container */
+.timeline-content::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    z-index: 1;
+    border: medium solid hsl(var(--card));
+}
+.timeline-content.left::before {
+    right: -10px;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent hsl(var(--card));
+}
+.timeline-content.right::before {
+    left: -10px;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent hsl(var(--card)) transparent transparent;
+}
+
+
+/* Fix the circle for the last item */
+.timeline-container-inner .timeline-content:not(:last-child) {
+  @apply mb-12;
+}
+
+@media screen and (max-width: 768px) {
+  .timeline-container-inner::after {
+    left: 31px;
+  }
+
+  .timeline-content {
+    max-width: 100%;
+    width: auto;
+    margin-left: 70px !important;
+  }
+  
+  .timeline-content::before {
+    left: -10px;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent hsl(var(--card)) transparent transparent;
+  }
+
+  .timeline-content.left::after, .timeline-content.right::after {
+    left: -80px;
+    right: auto;
+  }
 }
