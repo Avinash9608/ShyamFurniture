@@ -80,9 +80,11 @@ export default function Home() {
         ))}
         
         <div className="absolute bottom-0 left-0 z-10">
-           <Link href="/products">
-            <Button variant="secondary" size="lg" className="rounded-none">Explore our products <ArrowRight className="ml-2 h-5 w-5"/></Button>
-          </Link>
+            <div className="animated-button-wrapper">
+                <Link href="/products" className="animated-button">
+                    Explore our products <ArrowRight className="ml-2 h-5 w-5"/>
+                </Link>
+            </div>
         </div>
       </section>
 

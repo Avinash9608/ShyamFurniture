@@ -341,3 +341,29 @@
     left: 3px;
   }
 }
+
+.animated-button-wrapper {
+  padding: 1rem 2rem;
+}
+
+.animated-button {
+  @apply inline-flex items-center text-lg font-extrabold uppercase tracking-wider relative text-gray-200;
+  transition: color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.animated-button:hover,
+.animated-button:focus {
+  @apply text-white;
+}
+
+.animated-button::after {
+  content: "";
+  pointer-events: none;
+  @apply absolute left-1/2 w-0 h-[2px] bg-white bottom-[-4px];
+  transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1), left 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.animated-button:hover::after,
+.animated-button:focus::after {
+  @apply w-full left-0;
+}
