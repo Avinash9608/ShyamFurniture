@@ -1,18 +1,22 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Tag } from 'lucide-react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
+import { PlusCircle } from 'lucide-react';
+import dbConnect from '@/lib/dbConnect';
+import Offer from '@/models/Offer';
+import { OfferList } from './OfferList';
 
-// Placeholder data for offers
-const offers = [
-  { id: 1, title: '10% Off All Sofa Sets', code: 'SOFA10', status: 'Active', usage: 15 },
-  { id: 2, title: 'Diwali Special - 20% Off', code: 'DIWALI20', status: 'Active', usage: 42 },
-  { id: 3, title: 'New Year Sale', code: 'NEWYEAR', status: 'Expired', usage: 120 },
-];
+async function getOffers() {
+    await dbConnect();
+    const offers = await Offer.find({}).sort({ createdAt: -1 });
+    return JSON.parse(JSON.stringify(offers));
+}
 
-export default function AdminOffersPage() {
+
+export default async function AdminOffersPage() {
+  const offers = await getOffers();
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -32,32 +36,7 @@ export default function AdminOffersPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-           <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Promo Code</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Usage</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {offers.map((offer) => (
-                <TableRow key={offer.id}>
-                  <TableCell className="font-medium">{offer.title}</TableCell>
-                  <TableCell>
-                    <Badge variant="secondary">{offer.code}</Badge>
-                  </TableCell>
-                  <TableCell>
-                     <Badge variant={offer.status === 'Active' ? 'default' : 'outline'}>
-                        {offer.status}
-                     </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">{offer.usage}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+            <OfferList initialOffers={offers} />
         </CardContent>
       </Card>
     </div>
