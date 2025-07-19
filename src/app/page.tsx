@@ -361,22 +361,12 @@ export default function Home() {
               <CardDescription>Have a question? We'd love to hear from you.</CardDescription>
             </CardHeader>
             <CardContent>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-center">
-                    <div className="flex flex-col items-center">
-                        <Phone className="h-8 w-8 text-primary mb-2" />
-                        <h3 className="font-bold">Phone</h3>
-                        <a href="tel:+911234567890" className="text-muted-foreground hover:text-primary">+91 123 456 7890</a>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <MapPin className="h-8 w-8 text-primary mb-2" />
-                        <h3 className="font-bold">Address</h3>
-                        <p className="text-muted-foreground">Main Market, Saharsa, Bihar, India</p>
-                    </div>
-                </div>
               <form className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input placeholder="Name" />
                   <Input type="email" placeholder="Email" />
+                  <Input type="tel" placeholder="Phone" />
+                  <Input placeholder="Address" />
                 </div>
                 <Textarea placeholder="Message" rows={5} />
               </form>
@@ -392,3 +382,5 @@ export default function Home() {
   );
 
 }
+
+    
