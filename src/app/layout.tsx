@@ -4,6 +4,7 @@ import { Providers } from '@/components/Providers';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Toaster } from '@/components/ui/toaster';
+import FloatingSupportButton from '@/components/FloatingSupportButton';
 
 export const metadata: Metadata = {
   title: 'Shyam Furniture',
@@ -29,6 +30,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <Toaster />
+          <FloatingSupportButton />
         </Providers>
       </body>
     </html>
