@@ -8,20 +8,14 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export default function Home() {
   const popularProducts = products.slice(0, 6);
-  const teamMembers = [
-    { name: "John Doe", role: "Founder & CEO", image: "https://placehold.co/400x400.png", hint: "man portrait" },
-    { name: "Jane Smith", role: "Lead Designer", image: "https://placehold.co/400x400.png", hint: "woman portrait" },
-    { name: "Sam Wilson", role: "Operations Head", image: "https://placehold.co/400x400.png", hint: "person smiling" }
-  ];
 
   return (
     <div className="flex flex-col">
       <section className="relative h-[70vh] flex items-start justify-start text-foreground bg-cover bg-center" style={{backgroundImage: "url('https://placehold.co/1920x1080.png')"}} data-ai-hint="modern stylish living room">
-        <div className="absolute inset-0 bg-background/10" />
+        <div className="absolute inset-0 bg-background/30" />
         <div className="relative z-10 p-5 md:p-10 bg-background/80 rounded-br-2xl">
           <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
             Design your Comfort
@@ -35,10 +29,6 @@ export default function Home() {
            <Link href="/products">
             <Button variant="link" className="text-base">Explore our products</Button>
           </Link>
-        </div>
-        <div className="absolute bottom-0 right-0 z-10 p-5 bg-background/80 rounded-tl-2xl max-w-sm hidden md:block">
-            <h3 className="font-bold">Modern Designs</h3>
-            <p className="text-sm text-muted-foreground">Discover furniture that combines exceptional craftsmanship with enduring style.</p>
         </div>
       </section>
 
@@ -97,47 +87,6 @@ export default function Home() {
           <Button asChild className="mt-8">
             <Link href="/products">Explore More</Link>
           </Button>
-        </section>
-
-        <section id="about-shyam-furniture">
-            <Card className="bg-card/80">
-                <CardHeader>
-                    <CardTitle className="text-3xl font-bold text-center">🪑 About Shyam Furniture</CardTitle>
-                </CardHeader>
-                <CardContent className="prose max-w-none text-center mx-auto">
-                    <p>At Shyam Furniture, we believe your home deserves furniture that’s not just functional, but full of style, comfort, and character. We specialize in delivering premium-quality furniture with a strong commitment to service and satisfaction.</p>
-                    <p>To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.</p>
-                    <p className='font-semibold'>🛍️ See something you love?</p>
-                    <p>Just send us your selected items via WhatsApp or Email, and our dedicated team will personally reach out to you within 24 hours to confirm and finalize your order.</p>
-                    <p><strong>🚚 Currently, we deliver across the Saharsa region only.</strong></p>
-                    <p>From handpicking the best designs to ensuring smooth delivery, our team is here to bring your vision to life — with the same trust and quality that define Shyam Furniture.</p>
-                </CardContent>
-            </Card>
-        </section>
-
-        <section id="team">
-          <h2 className="text-3xl font-bold text-center mb-8">Meet Our Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <Card key={index} className="text-center overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105">
-                <div className="relative h-56 bg-muted">
-                    <Image src={member.image} alt={member.name} data-ai-hint={member.hint} fill className="object-cover" />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold font-headline">{member.name}</h3>
-                  <p className="text-primary">{member.role}</p>
-                  <p className="text-sm text-muted-foreground mt-2">Dedicated to bringing you the best furniture and service.</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-        
-        <section id="closing" className="relative rounded-lg h-[50vh] bg-cover bg-center bg-no-repeat flex items-end justify-end p-8" style={{backgroundImage: "url('https://placehold.co/1200x400.png')"}}>
-            <div className="bg-background/80 p-6 rounded-lg text-right max-w-md">
-                <h2 className="text-3xl font-bold">Made for you</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            </div>
         </section>
 
         <section id="faq" className="max-w-3xl mx-auto">
