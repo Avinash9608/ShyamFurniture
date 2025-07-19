@@ -62,7 +62,7 @@ export default function Home() {
               alt="Background furniture"
               layout="fill"
               objectFit="cover"
-              className={`w-full h-full transition-transform duration-[6000ms] ease-linear ${index === currentSlide ? 'scale-110' : 'scale-100'}`}
+              className={`w-full h-full ${index === currentSlide ? 'animate-scroll-left-to-right' : ''}`}
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
