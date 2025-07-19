@@ -79,7 +79,7 @@ export default function Home() {
           </div>
         ))}
         
-        <div className="absolute bottom-0 left-0 z-10">
+        <div className="absolute bottom-0 left-0">
             <div className="animated-button-wrapper">
                 <Link href="/products" className="animated-button">
                     Explore our products <ArrowRight className="ml-2 h-5 w-5"/>
@@ -107,7 +107,7 @@ export default function Home() {
                       To keep up with today’s digital world, we’ve brought our entire collection online. Now, from the comfort of your home, you can explore our latest designs through our website or mobile application.
                   </p>
                 </div>
-                <Link href="/about" className="animated-flip-button">
+                <Link href="/about" className="animated-flip-button" data-text="Meet Our Team">
                     <span>Meet Our Team</span>
                 </Link>
             </div>
@@ -131,7 +131,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="learn-more" className="flex flex-col md:flex-row-reverse items-center gap-8">
+        <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
            <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
               <Image src="https://placehold.co/600x400.png" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
             </div>
