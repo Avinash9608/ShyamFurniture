@@ -135,6 +135,21 @@ export default function Home() {
           </Accordion>
         </section>
 
+        <section id="location" className="w-full">
+          <h2 className="text-3xl font-bold text-center mb-8">Our Location</h2>
+          <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57333.72979689434!2d86.5642918408425!3d25.88839016997184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ee758ef53c1339%3A0x8f4fed3fd986f73!2sSaharsa%2C%20Bihar%2C%20India!5e0!3m2!1sen!2sus!4v1722442225330!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </section>
+
         <section id="contact" className="max-w-3xl mx-auto w-full">
           <Card>
             <CardHeader className="text-center">
