@@ -66,11 +66,11 @@ export default function Home() {
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
-            <div className={`absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-              <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
+            <div className={`absolute inset-0 flex flex-col items-start justify-center text-left text-white p-4 md:p-16 lg:p-24 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+              <h1 className="text-3xl md:text-5xl font-headline font-bold mb-2">
                 {slide.tagline1}
               </h1>
-              <p className="text-lg md:text-2xl font-body">
+              <p className="text-md md:text-xl font-body">
                 {slide.tagline2}
               </p>
             </div>
