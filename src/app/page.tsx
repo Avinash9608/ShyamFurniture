@@ -16,7 +16,7 @@ export default function Home() {
     <div className="flex flex-col">
       <section className="relative h-[70vh] flex items-start justify-start text-foreground bg-cover bg-center" style={{backgroundImage: "url('https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/pexels-emrecan-2079246.webp')"}} data-ai-hint="modern stylish living room">
         <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 p-5 md:p-10 bg-background rounded-br-2xl">
+        <div className="relative z-10 p-5 md:p-10 bg-background/80 rounded-br-2xl">
           <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
             Design your Comfort
           </h1>
@@ -25,12 +25,12 @@ export default function Home() {
           </p>
         </div>
         
-        <div className="absolute bottom-0 left-0 z-10 p-3 bg-background rounded-tr-2xl">
+        <div className="absolute bottom-0 left-0 z-10 p-3 bg-background/80 rounded-tr-2xl">
            <Link href="/products">
             <Button variant="link" className="text-base">Explore our products</Button>
           </Link>
         </div>
-        <div className="absolute bottom-0 right-0 z-10 p-5 bg-background rounded-tl-2xl max-w-sm hidden md:block">
+        <div className="absolute bottom-0 right-0 z-10 p-5 bg-background/80 rounded-tl-2xl max-w-sm hidden md:block">
             <h3 className="font-bold">Modern Designs</h3>
             <p className="text-sm text-muted-foreground">Discover furniture that combines exceptional craftsmanship with enduring style.</p>
         </div>
