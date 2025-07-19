@@ -22,8 +22,8 @@ export default function AboutPage() {
 
       <section id="marketlead-info" className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
-            <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-white/80 dark:bg-black/80 backdrop-blur-md p-8 rounded-lg shadow-lg">
-                <h2 className="text-2xl md:text-3xl font-semibold text-primary font-headline uppercase tracking-widest">
+            <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <h2 className="text-2xl md:text-3xl font-semibold text-primary-foreground font-headline uppercase tracking-widest">
                 SHYAM FURNITURE IS A PREMIUM FURNITURE RETAILER SPECIALIZING IN HANDCRAFTED, HIGH-QUALITY PRODUCTS.
                 </h2>
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-md">
