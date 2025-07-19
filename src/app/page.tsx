@@ -66,7 +66,7 @@ export default function Home() {
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
-            <div className={`absolute inset-0 flex flex-col items-start justify-center text-left text-white p-4 md:p-8 lg:p-12 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <div className={`absolute inset-0 flex flex-col items-start justify-center text-white p-4 md:p-8 lg:p-12 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
               <div className="bg-black/20 backdrop-blur-sm p-6 rounded-lg">
                 <h1 className="text-3xl md:text-5xl font-headline font-bold mb-2">
                   {slide.tagline1}
@@ -133,7 +133,7 @@ export default function Home() {
 
         <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
            <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
-              <Image src="https://placehold.co/600x400.png" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
             </div>
           <div className="md:w-1/2 space-y-4 text-center md:text-left">
             <h2 className="text-3xl font-bold">Built to Last and Modern</h2>
@@ -167,7 +167,7 @@ export default function Home() {
               <AccordionTrigger>How do I track my order?</AccordionTrigger>
               <AccordionContent>You can track your order by logging into your account and viewing the order details. A tracking number will be provided once the order has been shipped.</AccordionContent>
             </AccordionItem>
-             <AccordionItem value="item-how-to-order">
+            <AccordionItem value="item-how-to-order">
                 <AccordionTrigger>How do I place an order?</AccordionTrigger>
                 <AccordionContent>
                     See something you love? Just send us your selected items via WhatsApp or Email, and our dedicated team will personally reach out to you within 24 hours to confirm and finalize your order.
