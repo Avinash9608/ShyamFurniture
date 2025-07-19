@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,7 +29,7 @@ const productFormSchema = z.object({
   name: z.string().min(3, "Product name must be at least 3 characters."),
   category: z.string().min(2, "Category is required."),
   price: z.coerce.number().positive("Price must be a positive number."),
-  discountPrice: z.coerce.number().optional(),
+  discountPrice: z.coerce.number().optional().or(z.literal('')),
   images: z.array(z.string()).min(1, "At least one image is required."),
   description: z.string().min(10, "Description must be at least 10 characters."),
   features: z.array(z.object({ value: z.string() })).optional(),
@@ -57,13 +58,20 @@ export function ProductForm({ initialData }: ProductFormProps) {
   const defaultValues = initialData
     ? {
         ...initialData,
-        features: initialData.features?.map(f => ({ value: f as unknown as string })) || []
+        features: initialData.features?.map(f => ({ value: f as unknown as string })) || [],
+        discountPrice: initialData.discountPrice || '',
+        deliveryInfo: initialData.deliveryInfo || '',
+        dimensions: {
+          length: initialData.dimensions?.length || '',
+          width: initialData.dimensions?.width || '',
+          height: initialData.dimensions?.height || '',
+        }
       }
     : {
         name: "",
         category: "",
         price: 0,
-        discountPrice: undefined,
+        discountPrice: '',
         images: [],
         description: "",
         features: [],
