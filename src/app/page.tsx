@@ -137,27 +137,33 @@ const galleryImages = [
 
 
 const CountdownTimer = () => {
-    const calculateTimeLeft = () => {
-        const difference = +new Date("2024-12-31T23:59:59") - +new Date();
-        let timeLeft = {};
-
-        if (difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
-            };
-        }
-        return timeLeft;
-    };
-
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    const [timeLeft, setTimeLeft] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    });
 
     useEffect(() => {
+        const calculateTimeLeft = () => {
+            const difference = +new Date("2024-12-31T23:59:59") - +new Date();
+            let timeLeft = {};
+
+            if (difference > 0) {
+                timeLeft = {
+                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                    minutes: Math.floor((difference / 1000 / 60) % 60),
+                    seconds: Math.floor((difference / 1000) % 60),
+                };
+            }
+            return timeLeft;
+        };
+
         const timer = setTimeout(() => {
-            setTimeLeft(calculateTimeLeft());
+            setTimeLeft(calculateTimeLeft() as any);
         }, 1000);
+
         return () => clearTimeout(timer);
     });
 
@@ -339,6 +345,34 @@ export default function Home() {
             </div>
         </section>
 
+        <section id="limited-offer" className="offer-section">
+            <div className="offer-content">
+                <h2 className="text-4xl font-headline font-bold mb-2">Limited Time Offer!</h2>
+                <p className="text-xl mb-6">Flat <span className="text-yellow-400 font-bold">10% Off</span> on All Sofa Sets</p>
+                <CountdownTimer />
+                <Button size="lg" className="mt-8">
+                    <Link href="https://wa.me/911234567890?text=I'm_interested_in_the_10%_off_sofa_deal!">
+                        Claim Offer on WhatsApp
+                    </Link>
+                </Button>
+            </div>
+        </section>
+
+        <section id="gallery" className="text-center">
+            <h2 className="text-3xl font-bold mb-2">Our Furniture in Your Homes</h2>
+            <p className="text-muted-foreground mb-8">Tag us on Instagram <a href="#" className="text-primary hover:underline">@ShyamFurniture</a></p>
+            <div className="masonry-grid">
+                {galleryImages.map((image, index) => (
+                    <div key={index} className="masonry-item group">
+                        <Image src={image.src} alt={image.alt} data-ai-hint={image.hint} width={500} height={700} className="w-full h-auto rounded-lg" />
+                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <Instagram className="h-10 w-10 text-white" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
         <section id="testimonials" className="w-full">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold">🗣️ Customer Testimonials</h2>
@@ -373,34 +407,6 @@ export default function Home() {
                 <CarouselPrevious className="hidden md:flex" />
                 <CarouselNext className="hidden md:flex"/>
             </Carousel>
-        </section>
-
-        <section id="limited-offer" className="offer-section">
-            <div className="offer-content">
-                <h2 className="text-4xl font-headline font-bold mb-2">Limited Time Offer!</h2>
-                <p className="text-xl mb-6">Flat <span className="text-yellow-400 font-bold">10% Off</span> on All Sofa Sets</p>
-                <CountdownTimer />
-                <Button size="lg" className="mt-8">
-                    <Link href="https://wa.me/911234567890?text=I'm_interested_in_the_10%_off_sofa_deal!">
-                        Claim Offer on WhatsApp
-                    </Link>
-                </Button>
-            </div>
-        </section>
-
-        <section id="gallery" className="text-center">
-            <h2 className="text-3xl font-bold mb-2">Our Furniture in Your Homes</h2>
-            <p className="text-muted-foreground mb-8">Tag us on Instagram <a href="#" className="text-primary hover:underline">@ShyamFurniture</a></p>
-            <div className="masonry-grid">
-                {galleryImages.map((image, index) => (
-                    <div key={index} className="masonry-item group">
-                        <Image src={image.src} alt={image.alt} data-ai-hint={image.hint} width={500} height={700} className="w-full h-auto rounded-lg" />
-                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <Instagram className="h-10 w-10 text-white" />
-                        </div>
-                    </div>
-                ))}
-            </div>
         </section>
 
         <section id="faq" className="max-w-3xl mx-auto">
@@ -471,3 +477,5 @@ export default function Home() {
   );
 
 }
+
+    
