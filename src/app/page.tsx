@@ -92,7 +92,7 @@ export default function Home() {
 
         <section id="about-us-call" className="grid md:grid-cols-2 gap-12 items-center">
             <div className="md:order-2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
-              <Image src="https://placehold.co/600x400.png" data-ai-hint="elegant living room" alt="Stylish furniture in a modern living room" width={600} height={400} className="w-full h-full object-cover" />
+              <Image src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/eff87568-186c-4ef5-9096-31ab18cd1768.png" data-ai-hint="furniture store interior" alt="Stylish furniture in a modern living room" width={600} height={400} className="w-full h-full object-cover" />
             </div>
             <div className="space-y-6 md:order-1 text-left">
                 <h2 className="text-3xl font-bold flex items-center gap-3">
@@ -227,3 +227,5 @@ export default function Home() {
   );
 
 }
+
+    
