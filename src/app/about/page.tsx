@@ -18,44 +18,32 @@ const historyData = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-background text-foreground min-h-screen about-page">
-      <header 
-        className="relative w-full min-h-[25em] flex flex-col justify-center items-center text-center bg-cover bg-center"
-        style={{backgroundImage: "url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop')"}}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        <div className="relative z-10 w-11/12 md:w-3/4 lg:w-1/2 mt-20 text-white">
-          <span className="inline-block uppercase tracking-wider text-sm font-semibold">Company Management</span>
-          <h1 className="text-2xl md:text-4xl font-bold mt-2">Meet a team of experts and innovators who are pioneers in their field</h1>
-        </div>
-      </header>
+    <div className="bg-background text-foreground min-h-screen about-page-new">
 
-      <main className="relative z-10">
-        <section id="marketlead-info">
-          <div className="max-w-4xl mx-auto px-4 py-16">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">
+      <section id="marketlead-info" className="py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center text-primary font-headline uppercase tracking-widest">
               SHYAM FURNITURE IS A PREMIUM FURNITURE RETAILER SPECIALIZING IN HANDCRAFTED, HIGH-QUALITY PRODUCTS.
             </h2>
             <div className="text-center text-muted-foreground">
               <p>Shyam Furniture serves customers in the Saharsa region with a wide range of stylish and durable furniture for homes and offices, blending traditional craftsmanship with contemporary design. With a strong local presence built over decades, we have evolved into a modern retail brand, offering a seamless online shopping experience through our website and mobile application. Committed to quality, timely delivery, and customer satisfaction, we have earned the trust of thousands of families. Our operations are managed by a team of experienced professionals, each playing a vital role in driving our growth and ensuring excellence at every step.</p>
             </div>
           </div>
-        </section>
+      </section>
         
-        <section id="timeline">
-            <h2>HISTORY</h2>
-            <div className="timeline-container">
-              {historyData.map((item, index) => (
-                <div key={index} className="timeline-item">
-                  <div className="timeline-item-content">
-                      <span className="timeline-year">{item.year}</span>
-                      <p className="timeline-description">{item.description}</p>
-                  </div>
-                </div>
-              ))}
+      <section id="timeline">
+        <h2 className="text-center text-primary font-bold text-3xl md:text-4xl uppercase tracking-widest mb-16">HISTORY</h2>
+        <div className="timeline-container">
+          {historyData.map((item, index) => (
+            <div key={index} className="timeline-item">
+              <div className="timeline-item-content">
+                  <span className="timeline-year">{item.year}</span>
+                  <p className="timeline-description">{item.description}</p>
+              </div>
             </div>
-        </section>
-      </main>
+          ))}
+        </div>
+      </section>
 
        <section className="team py-16">
           <h2 className="section-heading">Our Team</h2>
