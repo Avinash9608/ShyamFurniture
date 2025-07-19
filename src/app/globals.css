@@ -416,7 +416,7 @@
 
 .light-button button.bt {
   position: relative;
-  height: 200px;
+  height: 140px;
   display: flex;
   align-items: flex-end;
   outline: none;
@@ -430,7 +430,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 80px;
   width: 100px;
   background-color: hsl(var(--foreground));
   border-radius: 5px;
@@ -438,12 +438,12 @@
   font-weight: 700;
   transition: 300ms;
   outline: hsl(var(--foreground)) 2px solid;
-  outline-offset: 20;
+  outline-offset: 10px;
 }
 
 .light-button button.bt .light-holder {
   position: absolute;
-  height: 200px;
+  height: 140px;
   width: 100px;
   display: flex;
   flex-direction: column;
@@ -453,8 +453,8 @@
 .light-button button.bt .light-holder .dot {
   position: absolute;
   top: 0;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background-color: hsl(var(--foreground));
   border-radius: 10px;
   z-index: 2;
@@ -463,8 +463,8 @@
 .light-button button.bt .light-holder .light {
   position: absolute;
   top: 0;
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
   background: transparent;
 }
