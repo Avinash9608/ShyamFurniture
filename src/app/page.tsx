@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -14,8 +14,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[70vh] flex items-start justify-start text-foreground bg-cover bg-center" style={{backgroundImage: "url('https://placehold.co/1920x1080.png')"}} data-ai-hint="modern stylish living room">
-        <div className="absolute inset-0 bg-background/10" />
+      <section className="relative h-[70vh] flex items-start justify-start text-foreground bg-cover bg-center" style={{backgroundImage: "url('https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/pexels-emrecan-2079246.webp')"}} data-ai-hint="modern stylish living room">
+        <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 p-5 md:p-10 bg-background rounded-br-2xl">
           <h1 className="text-4xl md:text-6xl font-headline font-bold mb-2">
             Design your Comfort
@@ -24,13 +24,15 @@ export default function Home() {
             Your Home, Your Style
           </p>
         </div>
-        <div className="absolute top-0 right-0 z-10 p-3 bg-background rounded-bl-2xl">
-          <Button variant="link" className="text-base">100-Day Refund</Button>
-        </div>
+        
         <div className="absolute bottom-0 left-0 z-10 p-3 bg-background rounded-tr-2xl">
            <Link href="/products">
             <Button variant="link" className="text-base">Explore our products</Button>
           </Link>
+        </div>
+        <div className="absolute bottom-0 right-0 z-10 p-5 bg-background rounded-tl-2xl max-w-sm hidden md:block">
+            <h3 className="font-bold">Modern Designs</h3>
+            <p className="text-sm text-muted-foreground">Discover furniture that combines exceptional craftsmanship with enduring style.</p>
         </div>
       </section>
 
@@ -38,15 +40,15 @@ export default function Home() {
 
         <section id="about-us-call">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2 space-y-4 text-center md:text-left">
+            <div className="md:w-1/2 space-y-4 text-left">
               <h2 className="text-3xl font-bold">High-quality and Timeless pieces</h2>
               <p>Discover furniture that combines exceptional craftsmanship with enduring style. Each piece is designed to be a part of your home for years to come.</p>
               <Button asChild>
-                <Link href="/about">About Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Link href="/#faq">About Us <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
-            <div className="md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
-                <Image src="https://placehold.co/600x400.png" data-ai-hint="elegant interior design" alt="High-quality furniture" width={600} height={400} className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" />
+            <div className="md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden shadow-lg group">
+                <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/pexels-fotoaibe-1571460.webp" data-ai-hint="elegant interior design" alt="High-quality furniture" width={600} height={400} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             </div>
           </div>
         </section>
@@ -66,11 +68,11 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="learn-more" className="flex flex-col md:flex-row items-center gap-8">
+        <section id="learn-more" className="flex flex-col md:flex-row-reverse items-center gap-8">
            <div className="md:w-1/2 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
-              <Image src="https://placehold.co/600x400.png" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
+              <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/pexels-falling4utah-1080696.webp" data-ai-hint="modern kitchen furniture" alt="Modern furniture design" width={600} height={400} className="w-full h-full object-cover" />
             </div>
-          <div className="md:w-1/2 space-y-4 text-center md:text-left">
+          <div className="md:w-1/2 space-y-4 text-left">
             <h2 className="text-3xl font-bold">Built to Last and Modern</h2>
             <p>Our collections are a testament to modern design principles, focusing on clean lines, functionality, and sustainable materials that stand the test of time.</p>
             <Button asChild variant="outline">
@@ -81,7 +83,7 @@ export default function Home() {
 
         <section id="sales" className="text-center">
           <h2 className="text-3xl font-bold mb-8">Popular Items On Sale</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {popularProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -104,7 +106,14 @@ export default function Home() {
             </div>
         </section>
         
-        <section id="faq" className="max-w-3xl mx-auto">
+        <section id="closing" className="relative rounded-lg h-[50vh] bg-cover bg-center bg-no-repeat flex items-end justify-end p-8" style={{backgroundImage: "url('https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/pexels-valeriya-1129413.webp')"}}>
+            <div className="bg-background/80 p-6 rounded-lg text-right max-w-md">
+                <h2 className="text-3xl font-bold">Made for you</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+            </div>
+        </section>
+
+        <section id="faq" className="max-w-3xl mx-auto w-full">
           <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
