@@ -1,3 +1,4 @@
+
 export type Product = {
   _id: string; // Changed from id: number to _id: string for MongoDB
   name: string;
@@ -25,3 +26,16 @@ export type CartItem = Product & {
 };
 
 export type WishlistItem = Product;
+
+export type Offer = {
+  _id: string;
+  title: string;
+  code: string;
+  discountPercentage: number;
+  startDate: string;
+  endDate: string;
+  isActive: boolean;
+  usageCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
