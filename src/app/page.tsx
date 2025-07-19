@@ -30,7 +30,7 @@ const heroSlides = [
     tagline2: "Furniture Banaye Apke Ghar Ko Khaas"
   },
   {
-    image: "https://images.unsplash.com/photo-1488901512066-cd403111aeb2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+    image: "https://images.unsplash.com/photo-148890152066-cd403111aeb2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
     tagline1: "Ghar Ki Pehchaan",
     tagline2: "Shyam Furniture Ke Saath"
   }
@@ -205,9 +205,19 @@ export default function Home() {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          <Button asChild className="mt-8">
-            <Link href="/products">Explore More</Link>
-          </Button>
+            <div className="mt-8 light-button">
+              <Link href="/products">
+                <button className="bt">
+                  <div className="light-holder">
+                    <div className="dot" />
+                    <div className="light" />
+                  </div>
+                  <div className="button-holder">
+                    <p>Explore More</p>
+                  </div>
+                </button>
+              </Link>
+            </div>
         </section>
 
         <section id="faq" className="max-w-3xl mx-auto">
