@@ -54,7 +54,10 @@ export default async function ContactDetailPage({ params }: { params: { id: stri
                             <p><strong>Email:</strong> {contact.email}</p>
                             <p><strong>Phone:</strong> {contact.phone || 'N/A'}</p>
                             <p><strong>Address:</strong> {contact.address || 'N/A'}</p>
-                            <p><strong>Status:</strong> <Badge variant={contact.status === 'new' ? 'destructive' : 'default'}>{contact.status}</Badge></p>
+                            <div className="flex items-center gap-2">
+                                <strong>Status:</strong>
+                                <Badge variant={contact.status === 'new' ? 'destructive' : 'default'}>{contact.status}</Badge>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>
@@ -63,4 +66,3 @@ export default async function ContactDetailPage({ params }: { params: { id: stri
         </div>
     );
 }
-
