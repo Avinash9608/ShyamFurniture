@@ -7,20 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
 import dbConnect from '@/lib/dbConnect';
 import Contact from '@/models/Contact';
-import { Button } from '@/components/ui/button';
-import { Eye } from 'lucide-react';
-import { format } from 'date-fns';
+import { ContactList } from './ContactList';
 
 async function getContacts() {
     await dbConnect();
@@ -42,41 +31,9 @@ export default async function AdminContactsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead><span className="sr-only">Actions</span></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {contacts.map((contact: any) => (
-                <TableRow key={contact._id}>
-                  <TableCell>{format(new Date(contact.createdAt), "PPP")}</TableCell>
-                  <TableCell className="font-medium">{contact.name}</TableCell>
-                  <TableCell>{contact.email}</TableCell>
-                  <TableCell>
-                    <Badge variant={contact.status === 'new' ? 'destructive' : 'default'}>
-                      {contact.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button asChild variant="ghost" size="icon">
-                        <Link href={`/admin/contacts/${contact._id}`}>
-                            <Eye className="h-4 w-4" />
-                        </Link>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <ContactList initialContacts={contacts} />
         </CardContent>
       </Card>
     </div>
     );
 }
-
