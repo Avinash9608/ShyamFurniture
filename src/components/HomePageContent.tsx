@@ -127,7 +127,7 @@ const faqItems = [
   {
     name: "Priya Chaubey",
     review: "Beautiful designs and very comfortable furniture. The online ordering system made everything super easy.",
-     avatar: "https/plus.unsplash.com/premium_photo-1682092039530-584ae1d9da7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmwlMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
+     avatar: "https://plus.unsplash.com/premium_photo-1682092039530-584ae1d9da7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmwlMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
   }
 ];
 
@@ -265,7 +265,7 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
   }, []);
 
   const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnHover: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
 
 
@@ -281,7 +281,7 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
               src={slide.image}
               alt="Background furniture"
               fill
-              className={`object-cover w-full h-full ${index === currentSlide ? 'animate-scroll-left-to-right' : ''}`}
+              className={index === currentSlide ? "object-cover w-full h-full animate-scroll-left-to-right" : "object-cover w-full h-full"}
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
