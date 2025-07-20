@@ -46,7 +46,7 @@ const productFormSchema = z.object({
 type ProductFormValues = z.infer<typeof productFormSchema>;
 
 interface ProductFormProps {
-  initialData?: ProductFormValues & { _id: string };
+  initialData?: ProductFormValues & { _id: string, features: string[] };
 }
 
 export function ProductForm({ initialData }: ProductFormProps) {
@@ -58,7 +58,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
   const defaultValues = initialData
     ? {
         ...initialData,
-        features: initialData.features?.map(f => ({ value: f as unknown as string })) || [],
+        features: initialData.features?.map(f => ({ value: f })) || [],
         discountPrice: initialData.discountPrice || '',
         deliveryInfo: initialData.deliveryInfo || '',
         dimensions: {

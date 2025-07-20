@@ -1,11 +1,12 @@
 
+
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ProductCard';
-import { ArrowRight, Truck, ShieldCheck, Tag, Star, Instagram } from 'lucide-react';
+import { ArrowRight, Truck, ShieldCheck, Tag, Star, Instagram, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay"
@@ -15,7 +16,11 @@ import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Product, Offer } from '@/lib/types';
-
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useToast } from '@/hooks/use-toast';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 
 const heroSlides = [
   {
@@ -122,7 +127,7 @@ const faqItems = [
   {
     name: "Priya Chaubey",
     review: "Beautiful designs and very comfortable furniture. The online ordering system made everything super easy.",
-     avatar: "https://plus.unsplash.com/premium_photo-1682092039530-584ae1d9da7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmwlMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
+     avatar: "https/plus.unsplash.com/premium_photo-1682092039530-584ae1d9da7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmwlMjBpbmRpYW58ZW58MHx8MHx8fDA%3D"
   }
 ];
 
@@ -199,6 +204,15 @@ const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
     );
 };
 
+const contactFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().optional(),
+  address: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 interface HomePageContentProps {
   popularProducts: Product[];
@@ -208,6 +222,40 @@ interface HomePageContentProps {
 export default function HomePageContent({ popularProducts, latestOffer }: HomePageContentProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeAccordionItem, setActiveAccordionItem] = useState<string | null>(null);
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      message: "",
+    },
+  });
+
+  const onContactSubmit = async (data: ContactFormValues) => {
+    setIsSubmitting(true);
+    try {
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+            throw new Error("Failed to send message.");
+        }
+        toast({ title: "Message Sent!", description: "Thank you for contacting us. We'll get back to you soon."});
+        form.reset();
+    } catch (error) {
+        toast({ variant: 'destructive', title: "Error", description: (error as Error).message });
+    } finally {
+        setIsSubmitting(false);
+    }
+  }
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -318,7 +366,7 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
         <section id="sales" className="text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Popular Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {popularProducts.map((product) => (
+            {popularProducts.slice(0, 3).map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
@@ -465,19 +513,22 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
               <CardDescription>Have a question? We'd love to hear from you.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input placeholder="Name" />
-                  <Input type="email" placeholder="Email" />
-                  <Input type="tel" placeholder="Phone" />
-                  <Input placeholder="Address" />
-                </div>
-                <Textarea placeholder="Message" rows={5} />
-              </form>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onContactSubmit)} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormControl><Input placeholder="Name" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="email" render={({ field }) => (<FormItem><FormControl><Input type="email" placeholder="Email" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="phone" render={({ field }) => (<FormItem><FormControl><Input type="tel" placeholder="Phone" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="address" render={({ field }) => (<FormItem><FormControl><Input placeholder="Address" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  </div>
+                   <FormField control={form.control} name="message" render={({ field }) => (<FormItem><FormControl><Textarea placeholder="Message" rows={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                   <Button type="submit" className="w-full" disabled={isSubmitting}>
+                     {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                     Send Message
+                   </Button>
+                </form>
+              </Form>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full">Send Message</Button>
-            </CardFooter>
           </Card>
         </section>
 

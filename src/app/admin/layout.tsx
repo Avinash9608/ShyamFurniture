@@ -1,3 +1,4 @@
+
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import {
@@ -7,7 +8,8 @@ import {
   Settings,
   Tag,
   Users,
-  Package2
+  Package2,
+  MessageSquare
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -39,6 +41,7 @@ const navLinks = [
     { href: "/admin/products", icon: Package, label: "Products" },
     { href: "/admin/customers", icon: Users, label: "Customers" },
     { href: "/admin/offers", icon: Tag, label: "Offers" },
+    { href: "/admin/contacts", icon: MessageSquare, label: "Contacts" },
 ];
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
