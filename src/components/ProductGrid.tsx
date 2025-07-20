@@ -16,7 +16,7 @@ interface ProductGridProps {
 }
 
 export function ProductGrid({ products, allMaterials, allColors }: ProductGridProps) {
-  const [priceRange, setPriceRange] = useState([0, 20000]);
+  const [priceRange, setPriceRange] = useState([0, 200000]);
   const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
 
@@ -53,8 +53,8 @@ export function ProductGrid({ products, allMaterials, allColors }: ProductGridPr
               <Label className="text-lg font-semibold mb-4 block">Price Range</Label>
               <Slider
                 defaultValue={priceRange}
-                max={20000}
-                step={100}
+                max={200000}
+                step={1000}
                 onValueChange={(value) => setPriceRange(value)}
               />
               <div className="flex justify-between mt-2 text-sm">
