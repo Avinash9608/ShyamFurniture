@@ -11,6 +11,8 @@ import dbConnect from '@/lib/dbConnect';
 import Contact from '@/models/Contact';
 import { ContactList } from './ContactList';
 
+export const revalidate = 0;
+
 async function getContacts() {
     await dbConnect();
     const contacts = await Contact.find({}).sort({ createdAt: -1 });
