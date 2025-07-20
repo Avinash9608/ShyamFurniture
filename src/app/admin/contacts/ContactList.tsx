@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -29,11 +29,29 @@ type Contact = {
     createdAt: string;
 }
 
-export function ContactList({ initialContacts }: { initialContacts: Contact[] }) {
-    const [contacts, setContacts] = useState(initialContacts);
+export function ContactList() {
+    const [contacts, setContacts] = useState<Contact[]>([]);
+    const [loading, setLoading] = useState(true);
     const [isDeleting, setIsDeleting] = useState(false);
     const [contactToDelete, setContactToDelete] = useState<Contact | null>(null);
     const { toast } = useToast();
+
+    useEffect(() => {
+        async function fetchContacts() {
+            setLoading(true);
+            try {
+                const res = await fetch('/api/admin/contacts');
+                if (!res.ok) throw new Error('Failed to fetch contacts');
+                const data = await res.json();
+                setContacts(data);
+            } catch (e) {
+                toast({ variant: 'destructive', title: 'Error', description: (e as Error).message });
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchContacts();
+    }, [toast]);
 
     const handleDelete = async () => {
         if (!contactToDelete) return;
@@ -60,6 +78,9 @@ export function ContactList({ initialContacts }: { initialContacts: Contact[] })
     
     return (
         <>
+            {loading ? (
+                <div className="flex justify-center items-center py-8"><Loader2 className="animate-spin mr-2" /> Loading contacts...</div>
+            ) : (
             <Table>
                 <TableHeader>
                 <TableRow>
@@ -109,6 +130,7 @@ export function ContactList({ initialContacts }: { initialContacts: Contact[] })
                 ))}
                 </TableBody>
             </Table>
+            )}
             <AlertDialog open={!!contactToDelete} onOpenChange={() => setContactToDelete(null)}>
                 <AlertDialogContent>
                     <AlertDialogHeader>

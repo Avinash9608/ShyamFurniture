@@ -7,21 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import dbConnect from '@/lib/dbConnect';
-import Contact from '@/models/Contact';
 import { ContactList } from './ContactList';
 
-export const revalidate = 0;
-
-async function getContacts() {
-    await dbConnect();
-    const contacts = await Contact.find({}).sort({ createdAt: -1 });
-    return JSON.parse(JSON.stringify(contacts));
-}
-
-export default async function AdminContactsPage() {
-    const contacts = await getContacts();
-
+export default function AdminContactsPage() {
     return (
     <div className="space-y-4">
       <h1 className="text-3xl font-bold">Contact Submissions</h1>
@@ -33,7 +21,7 @@ export default async function AdminContactsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ContactList initialContacts={contacts} />
+          <ContactList />
         </CardContent>
       </Card>
     </div>
