@@ -1,22 +1,15 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from '@/components/Providers';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { Toaster } from '@/components/ui/toaster';
-import FloatingSupportButton from '@/components/FloatingSupportButton';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import AppShell from '@/components/AppShell';
 
 export const metadata: Metadata = {
   title: 'Shyam Furniture',
   description: 'Design your Comfort',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -33,11 +26,7 @@ export default function RootLayout({
             disableTransitionOnChange
         >
           <Providers>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <Toaster />
-            <FloatingSupportButton />
+            <AppShell>{children}</AppShell>
           </Providers>
         </ThemeProvider>
       </body>

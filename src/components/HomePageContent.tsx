@@ -271,7 +271,7 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
 
   return (
     <div className="flex flex-col">
-       <section className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
+       <section className="relative h-[40vh] sm:h-[60vh] md:h-[70vh] w-full overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -285,12 +285,12 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
               priority={index === 0}
             />
             <div className="absolute inset-0 bg-black/40" />
-            <div className={`absolute inset-0 flex flex-col items-start justify-center text-white p-4 md:p-8 lg:p-12 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-              <div className="bg-black/20 backdrop-blur-sm p-4 md:p-6 rounded-lg">
-                <h1 className="text-2xl md:text-5xl font-headline font-bold mb-2">
+            <div className={`absolute inset-0 flex flex-col items-start justify-center text-white p-2 sm:p-4 md:p-8 lg:p-12 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+              <div className="bg-black/20 backdrop-blur-sm p-2 sm:p-4 md:p-6 rounded-lg">
+                <h1 className="text-lg sm:text-2xl md:text-5xl font-headline font-bold mb-2">
                   {slide.tagline1}
                 </h1>
-                <p className="text-base md:text-xl font-body">
+                <p className="text-xs sm:text-base md:text-xl font-body">
                   {slide.tagline2}
                 </p>
               </div>
@@ -300,14 +300,14 @@ export default function HomePageContent({ popularProducts, latestOffer }: HomePa
         
         <div className="absolute bottom-0 left-0">
              <div className="animated-button-wrapper">
-                <Link href="/products" className="animated-button text-sm md:text-lg">
+                <Link href="/products" className="animated-button text-xs sm:text-sm md:text-lg">
                     Explore our products <ArrowRight className="ml-2 h-5 w-5"/>
                 </Link>
             </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-20 md:space-y-24">
+      <div className="container mx-auto px-2 sm:px-4 md:px-8 py-8 md:py-16 space-y-12 md:space-y-20 lg:space-y-24">
 
         <section id="about-us-call" className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="md:order-2 h-64 md:h-96 rounded-lg overflow-hidden shadow-lg relative">

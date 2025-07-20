@@ -1,3 +1,4 @@
+"use client";
 
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -11,6 +12,9 @@ import Product from '@/models/Product';
 import AddToCartButton from './AddToCartButton';
 import WishlistButton from './WishlistButton';
 import DeliveryCheck from './DeliveryCheck';
+import { useCart } from '@/hooks/useCart';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 async function getProductById(id: string) {
     await dbConnect();
@@ -27,12 +31,46 @@ async function getProductById(id: string) {
 }
 
 
-export default async function ProductDetailPage({ params }: { params: { id: string } }) {
-  const product = await getProductById(params.id);
+export default function ProductDetailPageWrapper(props: any) {
+  // Client wrapper to use hooks
+  return <ProductDetailPage {...props} />;
+}
 
-  if (!product) {
-    notFound();
-  }
+function ProductDetailPage({ params }: { params: { id: string } }) {
+  const [mounted, setMounted] = useState(false);
+  const { addToCart } = useCart();
+  const router = useRouter();
+  const [product, setProduct] = useState<any>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    (async () => {
+      const res = await fetch(`/api/products/${params.id}`);
+      if (res.ok) {
+        setProduct(await res.json());
+      }
+    })();
+  }, [params.id]);
+
+  if (!mounted || !product) return null;
+
+  const isLoggedIn = typeof window !== 'undefined' && localStorage.getItem('token');
+
+  const handleAddToCart = () => {
+    if (!isLoggedIn) {
+      router.push('/auth/login');
+      return;
+    }
+    addToCart(product);
+  };
+
+  const handleBuyNow = () => {
+    if (!isLoggedIn) {
+      router.push('/auth/login');
+      return;
+    }
+    router.push(`/buy-now?product=${product._id}`);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -81,7 +119,8 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
           <p className="text-muted-foreground leading-relaxed">{product.description}</p>
           
           <div className="flex gap-4">
-            <AddToCartButton product={product} />
+            <Button onClick={handleAddToCart}>Add to Cart</Button>
+            <Button onClick={handleBuyNow}>Buy Now</Button>
             <WishlistButton product={product} />
           </div>
 

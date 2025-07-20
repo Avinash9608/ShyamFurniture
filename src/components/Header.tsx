@@ -6,9 +6,10 @@ import { Button } from './ui/button';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet';
 import { ThemeToggle } from './ThemeToggle';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from './ui/dropdown-menu';
 
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
@@ -21,6 +22,16 @@ const Header = () => {
     const { cartCount } = useCart();
     const { wishlistCount } = useWishlist();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [username, setUsername] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        if (typeof window !== 'undefined') {
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            setUsername(user?.username || null);
+        }
+    }, []);
 
     const navLinks = [
         { href: "/", text: "Home" },
@@ -32,17 +43,17 @@ const Header = () => {
 
     return (
         <header className="bg-background/80 backdrop-blur-sm text-foreground sticky top-0 z-40 shadow-sm border-b">
-            <div className="container mx-auto flex items-center justify-between p-4">
-                <Link href="/" className="flex items-center gap-2">
+            <div className="container mx-auto flex flex-wrap items-center justify-between px-2 sm:px-4 py-2 sm:py-4 gap-y-2">
+                <Link href="/" className="flex items-center gap-2 min-w-0">
                     <Image src="https://raw.githubusercontent.com/EliGolam/furniture-shop/main/img/logo.png" alt="Shyam Furniture Logo" width={32} height={32} />
-                    <h1 className="text-xl md:text-2xl font-headline font-bold">Shyam Furniture</h1>
+                    <h1 className="text-lg sm:text-xl md:text-2xl font-headline font-bold truncate">Shyam Furniture</h1>
                 </Link>
 
-                <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+                <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium flex-wrap">
                     {navLinks.map(link => <NavLink key={link.href} href={link.href}>{link.text}</NavLink>)}
                 </nav>
 
-                <div className="flex items-center gap-1 md:gap-2">
+                <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
                     <Button variant="ghost" size="icon" aria-label="Search" className="hidden md:inline-flex">
                         <Search />
                     </Button>
@@ -71,6 +82,37 @@ const Header = () => {
                         </Button>
                     </Link>
                     <ThemeToggle />
+                    {mounted && username ? (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" size="sm" className="ml-2 flex items-center gap-2">
+                                    <User className="h-4 w-4" />
+                                    <span className="hidden md:inline">{username}</span>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem asChild>
+                                    <Link href="/profile">Profile</Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    onClick={() => {
+                                        localStorage.removeItem('token');
+                                        localStorage.removeItem('user');
+                                        window.location.href = "/";
+                                    }}
+                                >
+                                    Logout
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    ) : mounted ? (
+                        <Link href="/auth/login" passHref>
+                            <Button variant="outline" size="sm" className="ml-2 flex items-center gap-2">
+                                <User className="h-4 w-4" />
+                                <span className="hidden md:inline">Login</span>
+                            </Button>
+                        </Link>
+                    ) : null}
                     <div className="md:hidden">
                         <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                             <SheetTrigger asChild>

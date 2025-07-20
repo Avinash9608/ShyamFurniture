@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect, useState } from 'react';
 import { useCart } from '@/hooks/useCart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,44 +22,84 @@ const shippingSchema = z.object({
   postalCode: z.string().min(5, "A valid postal code is required"),
   country: z.string().min(1, "Country is required"),
   phone: z.string().optional(),
+  paymentMode: z.enum(['cod', 'upi']),
 });
 
-const paymentSchema = z.object({
-  cardNumber: z.string().min(16).max(16),
-  cardName: z.string().min(1),
-  expiryDate: z.string().regex(/^(0[1-9]|1[0-2])d{2}$/, "Invalid expiry date (MM/YY)"),
-  cvc: z.string().min(3).max(4),
-});
+const checkoutSchema = shippingSchema;
 
-const checkoutSchema = shippingSchema.merge(paymentSchema);
+const paymentModes = [
+  { value: 'cod', label: 'Cash on Delivery' },
+  { value: 'upi', label: 'UPI (via)' },
+];
 
 export default function CheckoutPage() {
   const { cart, cartTotal, clearCart } = useCart();
   const router = useRouter();
   const { toast } = useToast();
+  const [mounted, setMounted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && cart.length === 0) {
+      router.push('/');
+    }
+    if (mounted && !isLoggedIn) {
+      router.push('/auth/login');
+    }
+  }, [mounted, cart.length, isLoggedIn, router]);
 
   const form = useForm<z.infer<typeof checkoutSchema>>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       email: '', firstName: '', lastName: '', address: '',
-      city: '', postalCode: '', country: 'United States', phone: '',
-      cardNumber: '', cardName: '', expiryDate: '', cvc: '',
+      city: '', postalCode: '', country: 'India', phone: '', paymentMode: 'cod',
     },
   });
 
-  if (cart.length === 0 && typeof window !== 'undefined') {
-    router.push('/');
-    return null;
-  }
-  
-  const onSubmit = (data: z.infer<typeof checkoutSchema>) => {
-    console.log('Order submitted', data);
-    toast({
-      title: "Order Placed!",
-      description: "Thank you for your purchase. Your order is being processed.",
-    });
-    clearCart();
-    router.push('/');
+  if (!mounted || !isLoggedIn || cart.length === 0) return null;
+
+  const onSubmit = async (data: z.infer<typeof checkoutSchema>) => {
+    if (!/saharsa/i.test(data.address)) {
+      toast({ title: 'Error', description: 'Orders are only available for Saharsa district addresses.', variant: 'destructive' });
+      return;
+    }
+    const userObj = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!userObj) {
+      router.push('/auth/login');
+      return;
+    }
+    try {
+      for (const item of cart) {
+        const payload = {
+          userId: userObj._id,
+          productId: item._id,
+          name: `${data.firstName} ${data.lastName}`,
+          email: data.email,
+          phone: data.phone,
+          address: `${data.address}, ${data.city}, ${data.postalCode}, ${data.country}`,
+          paymentMode: data.paymentMode,
+        };
+        await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      }
+      toast({
+        title: "Order Placed!",
+        description: "Thank you for your purchase. Your order is being processed.",
+      });
+      clearCart();
+      router.push('/');
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to place order.', variant: 'destructive' });
+    }
   };
 
   return (
@@ -76,21 +116,24 @@ export default function CheckoutPage() {
                 <FormField name="email" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Email</FormLabel><FormControl><Input {...field} autoComplete="email" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="firstName" control={form.control} render={({ field }) => (<FormItem><FormLabel>First Name</FormLabel><FormControl><Input {...field} autoComplete="given-name" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="lastName" control={form.control} render={({ field }) => (<FormItem><FormLabel>Last Name</FormLabel><FormControl><Input {...field} autoComplete="family-name" /></FormControl><FormMessage /></FormItem>)} />
-                <FormField name="address" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Address</FormLabel><FormControl><Input {...field} autoComplete="shipping street-address" /></FormControl><FormMessage /></FormItem>)} />
+                <FormField name="address" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Address <span className="text-xs text-red-500">(Only Saharsa district orders are accepted)</span></FormLabel><FormControl><Input {...field} autoComplete="shipping street-address" placeholder="Enter your address (must include Saharsa)" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="city" control={form.control} render={({ field }) => (<FormItem><FormLabel>City</FormLabel><FormControl><Input {...field} autoComplete="shipping address-level2" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="postalCode" control={form.control} render={({ field }) => (<FormItem><FormLabel>Postal Code</FormLabel><FormControl><Input {...field} autoComplete="shipping postal-code" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="country" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Country</FormLabel><FormControl><Input {...field} autoComplete="country-name" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="phone" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Phone (Optional)</FormLabel><FormControl><Input {...field} autoComplete="tel" /></FormControl><FormMessage /></FormItem>)} />
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader><CardTitle className="font-headline text-2xl">Payment Details</CardTitle></CardHeader>
-              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField name="cardNumber" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Card Number</FormLabel><FormControl><Input {...field} autoComplete="cc-number" /></FormControl><FormMessage /></FormItem>)} />
-                <FormField name="cardName" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Name on Card</FormLabel><FormControl><Input {...field} autoComplete="cc-name" /></FormControl><FormMessage /></FormItem>)} />
-                <FormField name="expiryDate" control={form.control} render={({ field }) => (<FormItem><FormLabel>Expiry Date (MM/YY)</FormLabel><FormControl><Input {...field} autoComplete="cc-exp" /></FormControl><FormMessage /></FormItem>)} />
-                <FormField name="cvc" control={form.control} render={({ field }) => (<FormItem><FormLabel>CVC</FormLabel><FormControl><Input {...field} autoComplete="cc-csc" /></FormControl><FormMessage /></FormItem>)} />
+                <FormField name="paymentMode" control={form.control} render={({ field }) => (
+                  <FormItem className="md:col-span-2">
+                    <FormLabel>Payment Mode</FormLabel>
+                    <FormControl>
+                      <select className="w-full border rounded px-3 py-2" {...field}>
+                        {paymentModes.map(mode => (
+                          <option key={mode.value} value={mode.value}>{mode.label}</option>
+                        ))}
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
               </CardContent>
             </Card>
           </div>
