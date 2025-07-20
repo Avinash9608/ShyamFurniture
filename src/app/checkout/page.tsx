@@ -27,7 +27,7 @@ const shippingSchema = z.object({
 const paymentSchema = z.object({
   cardNumber: z.string().min(16).max(16),
   cardName: z.string().min(1),
-  expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Invalid expiry date (MM/YY)"),
+  expiryDate: z.string().regex(/^(0[1-9]|1[0-2])d{2}$/, "Invalid expiry date (MM/YY)"),
   cvc: z.string().min(3).max(4),
 });
 
@@ -79,7 +79,7 @@ export default function CheckoutPage() {
                 <FormField name="address" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Address</FormLabel><FormControl><Input {...field} autoComplete="shipping street-address" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="city" control={form.control} render={({ field }) => (<FormItem><FormLabel>City</FormLabel><FormControl><Input {...field} autoComplete="shipping address-level2" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="postalCode" control={form.control} render={({ field }) => (<FormItem><FormLabel>Postal Code</FormLabel><FormControl><Input {...field} autoComplete="shipping postal-code" /></FormControl><FormMessage /></FormItem>)} />
-                <FormField name="country" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Country</FormLabel><FormControl><Input {...field} autoComplete="country-name" /></FormControl><FormMessage /></FormMessage>)} />
+                <FormField name="country" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Country</FormLabel><FormControl><Input {...field} autoComplete="country-name" /></FormControl><FormMessage /></FormItem>)} />
                 <FormField name="phone" control={form.control} render={({ field }) => (<FormItem className="md:col-span-2"><FormLabel>Phone (Optional)</FormLabel><FormControl><Input {...field} autoComplete="tel" /></FormControl><FormMessage /></FormItem>)} />
               </CardContent>
             </Card>
